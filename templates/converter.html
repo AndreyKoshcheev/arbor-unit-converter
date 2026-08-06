@@ -1,0 +1,46 @@
+{{define "converter.html"}}
+<div class="converter-page">
+    <div class="page-header">
+        <h1 class="page-title">{{.CurrentCat.Icon}} {{to (printf "nav.%s" .Slug)}}</h1>
+    </div>
+
+    <div class="converter-card">
+        <div class="converter-form">
+            <div class="input-group">
+                <label class="input-label" for="inputValue">{{t "label.value"}}</label>
+                <input type="number" id="inputValue" class="form-input" placeholder="0" step="any" autofocus>
+            </div>
+
+            <div class="unit-row">
+                <div class="input-group">
+                    <label class="input-label" for="fromUnit">{{t "label.from"}}</label>
+                    <select id="fromUnit" class="form-select">
+                        {{range .CurrentCat.Units}}
+                        <option value="{{.Code}}">{{to (printf "unit.%s" .Code)}}</option>
+                        {{end}}
+                    </select>
+                </div>
+
+                <button class="swap-btn" id="swapBtn" title="{{t "btn.swap"}}">⇄</button>
+
+                <div class="input-group">
+                    <label class="input-label" for="toUnit">{{t "label.to"}}</label>
+                    <select id="toUnit" class="form-select">
+                        {{range $i, $u := .CurrentCat.Units}}
+                        <option value="{{$u.Code}}" {{if eq $i 1}}selected{{end}}>{{to (printf "unit.%s" $u.Code)}}</option>
+                        {{end}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="result-group">
+                <label class="input-label result-label">{{t "label.result"}}</label>
+                <div class="result-box" id="resultBox">
+                    <span class="result-value" id="resultValue">{{t "result.placeholder"}}</span>
+                    <span class="result-unit" id="resultUnit">{{.DefaultToName}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

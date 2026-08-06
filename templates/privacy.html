@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="{{.Lang}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="header-inner">
+                <a href="/" class="logo">ARBOR-CONVERTER.RU</a>
+                <div class="header-spacer"></div>
+                <div class="lang-dropdown">
+                    <button class="lang-dropdown-toggle" id="langToggle">
+                        {{if eq .Lang "ru"}}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon"><rect width="3" height="0.667" fill="#fff"/><rect y="0.667" width="3" height="0.666" fill="#0039A6"/><rect y="1.333" width="3" height="0.667" fill="#D52B1E"/></svg>
+                        {{else}}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="flag-icon"><rect width="60" height="30" fill="#012169"/><path fill="#FFF" d="M0 0l60 30M60 0L0 30" stroke="#FFF" stroke-width="6"/><path fill="#C8102E" d="M0 0l60 30M60 0L0 30" stroke="#C8102E" stroke-width="2"/><path fill="#FFF" d="M30 0v30M0 15h60"/><path fill="#C8102E" d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="2"/></g></svg>
+                        {{end}}
+                        <span class="lang-arrow">▼</span>
+                    </button>
+                    <div class="lang-dropdown-menu" id="langMenu">
+                        <a href="/lang/ru" class="lang-dropdown-item {{if eq .Lang "ru"}}active{{end}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon"><rect width="3" height="0.667" fill="#fff"/><rect y="0.667" width="3" height="0.666" fill="#0039A6"/><rect y="1.333" width="3" height="0.667" fill="#D52B1E"/></svg>
+                            <span>RU</span>
+                        </a>
+                        <a href="/lang/en" class="lang-dropdown-item {{if eq .Lang "en"}}active{{end}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="flag-icon"><rect width="60" height="30" fill="#012169"/><path fill="#FFF" d="M0 0l60 30M60 0L0 30" stroke="#FFF" stroke-width="6"/><path fill="#C8102E" d="M0 0l60 30M60 0L0 30" stroke="#C8102E" stroke-width="2"/><path fill="#FFF" d="M30 0v30M0 15h60"/><path fill="#C8102E" d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="2"/></g></svg>
+                            <span>EN</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main">
+            <main class="content" style="margin:0 auto;max-width:720px;">
+                <div class="privacy-page">
+                    <h1>{{.T "footer.privacy"}}</h1>
+                    {{if eq .Lang "ru"}}
+                    <p>Настоящая Политика конфиденциальности описывает, как собираются, используются и защищаются ваши персональные данные при использовании сервиса «ARBOR-CONVERTER.RU».</p>
+                    <h2>1. Какие данные мы собираем</h2>
+                    <p>Мы не собираем и не храним персональные данные пользователей.</p>
+                    <h2>2. Использование Cookie</h2>
+                    <p>Сервис использует cookie-файлы для сохранения выбранного языка интерфейса.</p>
+                    <h2>3. Реклама</h2>
+                    <p>На сайте может отображаться реклама от Яндекс РСЯ.</p>
+                    <h2>4. Контакты</h2>
+                    <p>privacy@arbor-converter.ru</p>
+                    {{else}}
+                    <p>This Privacy Policy describes how your personal data is collected, used and protected when using the «ARBOR-CONVERTER.RU» service.</p>
+                    <h2>1. What data we collect</h2>
+                    <p>We do not collect or store users' personal data.</p>
+                    <h2>2. Use of Cookies</h2>
+                    <p>The service uses cookies to save your language preference.</p>
+                    <h2>3. Advertising</h2>
+                    <p>This site may display ads from Yandex Advertising Network.</p>
+                    <h2>4. Contact</h2>
+                    <p>privacy@arbor-converter.ru</p>
+                    {{end}}
+                </div>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-inner">
+                <p class="footer-text">© 2026 — Arbor-converter.ru — конвертеры единиц измерений</p>
+                <div class="footer-links">
+                    <a href="/privacy" class="footer-link">{{.T "footer.privacy"}}</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            var langToggle = document.getElementById('langToggle');
+            var langMenu = document.getElementById('langMenu');
+            if (langToggle && langMenu) {
+                langToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    langMenu.classList.toggle('visible');
+                });
+                document.addEventListener('click', function() {
+                    langMenu.classList.remove('visible');
+                });
+                langMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
