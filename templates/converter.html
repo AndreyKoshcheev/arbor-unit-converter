@@ -16,7 +16,7 @@
                     <label class="input-label" for="fromUnit">{{t "label.from"}}</label>
                     <select id="fromUnit" class="form-select">
                         {{range .CurrentCat.Units}}
-                        <option value="{{.Code}}">{{to (printf "unit.%s" .Code)}}</option>
+                        <option value="{{.Code}}" data-gen="{{tgen .Code}}">{{to (printf "unit.%s" .Code)}}</option>
                         {{end}}
                     </select>
                 </div>
@@ -27,7 +27,7 @@
                     <label class="input-label" for="toUnit">{{t "label.to"}}</label>
                     <select id="toUnit" class="form-select">
                         {{range $i, $u := .CurrentCat.Units}}
-                        <option value="{{$u.Code}}" {{if eq $i 1}}selected{{end}}>{{to (printf "unit.%s" $u.Code)}}</option>
+                        <option value="{{$u.Code}}" data-gen="{{tgen $u.Code}}" {{if eq $i 1}}selected{{end}}>{{to (printf "unit.%s" $u.Code)}}</option>
                         {{end}}
                     </select>
                 </div>
