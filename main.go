@@ -80,6 +80,8 @@ func main() {
 	mux.HandleFunc("/privacy", privacyHandler)
 	mux.HandleFunc("/calculator", calculatorHandler)
 	mux.HandleFunc("/engineering", engineeringHandler)
+	mux.HandleFunc("/credit", creditHandler)
+	mux.HandleFunc("/compound", compoundHandler)
 	mux.HandleFunc("/", pageHandler)
 
 	fmt.Println("Сервер запущен: http://localhost:8080")
@@ -208,6 +210,38 @@ func engineeringHandler(w http.ResponseWriter, r *http.Request) {
 	err := tmpl.Execute(w, map[string]interface{}{
 		"Lang": lang,
 		"Title": t(lang, "nav.engineering") + " — " + t(lang, "site.title"),
+	})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func creditHandler(w http.ResponseWriter, r *http.Request) {
+	lang := getLang(r)
+	funcMap := template.FuncMap{
+		"t": func(key string, args ...interface{}) string { return t(lang, key, args...) },
+	}
+	tmpl := template.Must(template.New("credit.html").Funcs(funcMap).ParseFiles("templates/credit.html"))
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	err := tmpl.Execute(w, map[string]interface{}{
+		"Lang": lang,
+		"Title": t(lang, "nav.credit") + " — " + t(lang, "site.title"),
+	})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func compoundHandler(w http.ResponseWriter, r *http.Request) {
+	lang := getLang(r)
+	funcMap := template.FuncMap{
+		"t": func(key string, args ...interface{}) string { return t(lang, key, args...) },
+	}
+	tmpl := template.Must(template.New("compound.html").Funcs(funcMap).ParseFiles("templates/compound.html"))
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	err := tmpl.Execute(w, map[string]interface{}{
+		"Lang": lang,
+		"Title": t(lang, "nav.compound") + " — " + t(lang, "site.title"),
 	})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

@@ -19,6 +19,8 @@
                 <nav class="header-nav">
                     <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
                     <a href="/engineering" class="header-nav-link active">{{t "nav.engineering"}}</a>
+                    <a href="/credit" class="header-nav-link">{{t "nav.credit"}}</a>
+                    <a href="/compound" class="header-nav-link">{{t "nav.compound"}}</a>
                 </nav>
                 <div class="header-spacer"></div>
                 <div class="lang-dropdown">
@@ -45,6 +47,8 @@
             <div class="header-nav-mobile" id="headerNavMobile">
                 <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
                 <a href="/engineering" class="header-nav-link active">{{t "nav.engineering"}}</a>
+                <a href="/credit" class="header-nav-link">{{t "nav.credit"}}</a>
+                <a href="/compound" class="header-nav-link">{{t "nav.compound"}}</a>
             </div>
         </header>
 
@@ -242,5 +246,31 @@
         })();
     </script>
     <script src="/static/js/engineering.js"></script>
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <script>
+        (function() {
+            var btn = document.getElementById('scrollTopBtn');
+            if (!btn) return;
+            var halfPage = window.innerHeight / 2;
+            
+            function checkScroll() {
+                if (window.scrollY > halfPage) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            }
+            
+            window.addEventListener('scroll', checkScroll, { passive: true });
+            checkScroll();
+            
+            btn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
 </body>
 </html>

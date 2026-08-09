@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{.Title}}</title>
-    <meta name="description" content="{{t "home.subtitle"}}">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css?v=3">
 </head>
 <body>
     <div class="app">
@@ -21,7 +20,7 @@
                     <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
                     <a href="/engineering" class="header-nav-link">{{t "nav.engineering"}}</a>
                     <a href="/credit" class="header-nav-link">{{t "nav.credit"}}</a>
-                    <a href="/compound" class="header-nav-link">{{t "nav.compound"}}</a>
+                    <a href="/compound" class="header-nav-link active">{{t "nav.compound"}}</a>
                 </nav>
                 <div class="header-spacer"></div>
                 <div class="lang-dropdown">
@@ -44,72 +43,21 @@
                         </a>
                     </div>
                 </div>
+            </div>
             <div class="header-nav-mobile" id="headerNavMobile">
                 <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
                 <a href="/engineering" class="header-nav-link">{{t "nav.engineering"}}</a>
                 <a href="/credit" class="header-nav-link">{{t "nav.credit"}}</a>
-                <a href="/compound" class="header-nav-link">{{t "nav.compound"}}</a>
+                <a href="/compound" class="header-nav-link active">{{t "nav.compound"}}</a>
             </div>
         </header>
 
         <div class="main home-main">
             <main class="home-content">
-                <div class="home-header">
-                    <h1 class="home-title">Конвертер единиц измерения</h1>
-                </div>
-
-                <div class="category-grid">
-                    {{range .Categories}}
-                    <a href="/{{.Code}}" class="category-card">
-                        <div class="card-icon">{{.Icon}}</div>
-                        <div class="card-body">
-                            <h3 class="card-title">{{to (printf "nav.%s" .Code)}}</h3>
-                            <p class="card-desc">{{to (printf "desc.%s" .Code)}}</p>
-                        </div>
-                        <div class="card-arrow">→</div>
-                    </a>
-                    {{end}}
-                </div>
-
-                <div class="home-section-divider"></div>
-
-                <div class="home-section-header">
-                    <h2 class="home-section-title">{{t "home.calculators"}}</h2>
-                </div>
-
-                <div class="calculator-grid">
-                    <a href="/calculator" class="category-card">
-                        <div class="card-icon">🔢</div>
-                        <div class="card-body">
-                            <h3 class="card-title">{{t "nav.calculator"}}</h3>
-                            <p class="card-desc">{{t "home.calc_simple"}}</p>
-                        </div>
-                        <div class="card-arrow">→</div>
-                    </a>
-                    <a href="/engineering" class="category-card">
-                        <div class="card-icon">⚙️</div>
-                        <div class="card-body">
-                            <h3 class="card-title">{{t "nav.engineering"}}</h3>
-                            <p class="card-desc">{{t "home.calc_engineering"}}</p>
-                        </div>
-                        <div class="card-arrow">→</div>
-                    </a>
-                    <a href="/credit" class="category-card">
-                        <div class="card-icon">💰</div>
-                        <div class="card-body">
-                            <h3 class="card-title">{{t "nav.credit"}}</h3>
-                            <p class="card-desc">{{t "home.calc_credit"}}</p>
-                        </div>
-                        <div class="card-arrow">→</div>
-                    </a>
-                    <a href="/compound" class="category-card">
-                        <div class="card-icon">📈</div>
-                        <div class="card-body">
-                            <h3 class="card-title">{{t "nav.compound"}}</h3>
-                            <p class="card-desc">{{t "home.calc_compound"}}</p>
-                        </div>
-                        <div class="card-arrow">→</div>
-                    </a>
+                <div class="placeholder-page">
+                    <div class="placeholder-icon">📈</div>
+                    <h1 class="placeholder-title">{{t "nav.compound"}}</h1>
+                    <p class="placeholder-text">{{t "placeholder.coming_soon"}}</p>
                 </div>
             </main>
         </div>
@@ -117,16 +65,13 @@
         <footer class="footer">
             <div class="footer-inner">
                 <p class="footer-text">© 2026 — Arbor-converter.ru — конвертеры единиц измерений</p>
-                <div class="footer-links">
-                    <a href="/privacy" class="footer-link">{{t "footer.privacy"}}</a>
-                </div>
             </div>
         </footer>
     </div>
 
     <script>
         (function() {
-                        var mobileNavToggle = document.getElementById('mobileNavToggle');
+            var mobileNavToggle = document.getElementById('mobileNavToggle');
             var mobileNav = document.getElementById('headerNavMobile');
             if (mobileNavToggle && mobileNav) {
                 mobileNavToggle.addEventListener('click', function(e) {
@@ -156,44 +101,6 @@
             }
         })();
     </script>
-    <!-- Cookie consent banner -->
-    <div class="cookie-banner" id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;z-index:1000;background:#f0fdf4;border-top:1px solid #dcfce7;padding:18px 20px 16px">
-      <div class="cookie-banner-inner">
-        <div class="cookie-banner-text">
-          <p>{{t "cookie.text"}}</p>
-          <a href="/privacy">{{t "cookie.privacy"}}</a>
-        </div>
-        <div class="cookie-banner-actions">
-          <button class="cookie-btn cookie-btn-secondary" id="cookieReject">{{t "cookie.reject"}}</button>
-          <button class="cookie-btn cookie-btn-primary" id="cookieAccept">{{t "cookie.accept"}}</button>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      (function() {
-        var banner = document.getElementById('cookieBanner');
-        var acceptBtn = document.getElementById('cookieAccept');
-        var rejectBtn = document.getElementById('cookieReject');
-        if (!banner || !acceptBtn || !rejectBtn) return;
-
-        var consent = localStorage.getItem('cookie_consent');
-        if (consent === 'accepted' || consent === 'rejected') {
-          banner.style.display = 'none';
-        }
-
-        acceptBtn.addEventListener('click', function() {
-          localStorage.setItem('cookie_consent', 'accepted');
-          banner.style.display = 'none';
-        });
-
-        rejectBtn.addEventListener('click', function() {
-          localStorage.setItem('cookie_consent', 'rejected');
-          banner.style.display = 'none';
-        });
-      })();
-    </script>
-
     <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">
         <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
     </button>

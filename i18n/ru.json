@@ -1163,5 +1163,13 @@
   "eng_legend.memory": "Память",
   "eng_legend.ops": "Операции",
   "eng_desc.hyper": "Гиперболические: sinh, cosh, tanh, arsinh, arcosh, artanh",
-  "eng_desc.other": "Дополнительно: x!, abs, %, Rand, Mod, Int, ±, Ans, EE, π, e"
+  "eng_desc.other": "Дополнительно: x!, abs, %, Rand, Mod, Int, ±, Ans, EE, π, e",
+  "nav.credit": "Кредитный калькулятор",
+  "nav.compound": "Сложный процент",
+  "placeholder.coming_soon": "Страница находится в разработке",
+  "home.calculators": "Калькуляторы",
+  "home.calc_simple": "Обычный калькулятор с базовыми операциями",
+  "home.calc_engineering": "Инженерный калькулятор с тригонометрией, логарифмами и памятью",
+  "home.calc_credit": "Калькулятор для расчёта кредитных платежей",
+  "home.calc_compound": "Калькулятор сложного процента и доходности"
 }

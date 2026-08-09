@@ -1163,5 +1163,13 @@
   "eng_legend.memory": "Memory",
   "eng_legend.ops": "Operations",
   "eng_desc.hyper": "Hyperbolic: sinh, cosh, tanh, arsinh, arcosh, artanh",
-  "eng_desc.other": "Additional: x!, abs, %, Rand, Mod, Int, ±, Ans, EE, π, e"
+  "eng_desc.other": "Additional: x!, abs, %, Rand, Mod, Int, ±, Ans, EE, π, e",
+  "nav.credit": "Credit Calculator",
+  "nav.compound": "Compound Interest",
+  "placeholder.coming_soon": "Page under development",
+  "home.calculators": "Calculators",
+  "home.calc_simple": "Basic calculator with arithmetic operations",
+  "home.calc_engineering": "Engineering calculator with trigonometry, logarithms and memory",
+  "home.calc_credit": "Credit payment calculator",
+  "home.calc_compound": "Compound interest calculator"
 }
