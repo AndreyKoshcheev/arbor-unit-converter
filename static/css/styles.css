@@ -657,3 +657,57 @@ a { color: inherit; }
     justify-content: center;
   }
 }
+
+/* ===== Category description (below converter) ===== */
+.category-description {
+  margin-top: 24px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.category-description p {
+  margin: 0 0 12px;
+}
+
+.category-description p:last-child {
+  margin-bottom: 0;
+}
+
+.category-description strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ===== Extended units toggle ===== */
+.extended-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.extended-toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.extended-toggle-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.extended-toggle:hover .extended-toggle-label {
+  color: var(--text);
+}

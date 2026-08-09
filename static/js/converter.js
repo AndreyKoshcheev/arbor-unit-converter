@@ -4,11 +4,14 @@
   var input = document.getElementById('inputValue');
   var fromSel = document.getElementById('fromUnit');
   var toSel = document.getElementById('toUnit');
+  var fromSelExt = document.getElementById('fromUnitExtended');
+  var toSelExt = document.getElementById('toUnitExtended');
   var swapBtn = document.getElementById('swapBtn');
   var convertBtn = document.getElementById('convertBtn');
   var resultValue = document.getElementById('resultValue');
   var resultUnit = document.getElementById('resultUnit');
   var copyBtn = document.getElementById('copyBtn');
+  var extendedCb = document.getElementById('extendedCheckbox');
 
   if (!input || !fromSel || !toSel || !resultValue || !resultUnit || !convertBtn || !copyBtn) return;
 
@@ -20,8 +23,19 @@
     useGrouping: true
   });
 
+  function getActiveFromSel() {
+    if (extendedCb && extendedCb.checked && fromSelExt) return fromSelExt;
+    return fromSel;
+  }
+
+  function getActiveToSel() {
+    if (extendedCb && extendedCb.checked && toSelExt) return toSelExt;
+    return toSel;
+  }
+
   function getResultUnitText() {
-    var opt = toSel.options[toSel.selectedIndex];
+    var sel = getActiveToSel();
+    var opt = sel.options[sel.selectedIndex];
     if (opt && opt.getAttribute('data-gen')) {
       return opt.getAttribute('data-gen');
     }
@@ -46,10 +60,12 @@
     }
 
     try {
+      var fromActive = getActiveFromSel();
+      var toActive = getActiveToSel();
       var params = new URLSearchParams({
         category: category,
-        from: fromSel.value,
-        to: toSel.value,
+        from: fromActive.value,
+        to: toActive.value,
         value: String(value)
       });
       var res = await fetch('/api/convert?' + params.toString());
@@ -63,6 +79,36 @@
     } catch (e) {
       clearResult();
     }
+  }
+
+  // Extended checkbox toggle
+  if (extendedCb && fromSelExt && toSelExt) {
+    extendedCb.addEventListener('change', function () {
+      var isExtended = extendedCb.checked;
+
+      // Sync values between selects
+      if (isExtended) {
+        fromSelExt.value = fromSel.value;
+        toSelExt.value = toSel.value;
+      } else {
+        // When going back to basic, try to find matching basic option
+        var fromVal = fromSelExt.value;
+        var toVal = toSelExt.value;
+        if (fromSel.querySelector('option[value="' + fromVal + '"]')) {
+          fromSel.value = fromVal;
+        }
+        if (toSel.querySelector('option[value="' + toVal + '"]')) {
+          toSel.value = toVal;
+        }
+      }
+
+      fromSel.style.display = isExtended ? 'none' : '';
+      fromSelExt.style.display = isExtended ? '' : 'none';
+      toSel.style.display = isExtended ? 'none' : '';
+      toSelExt.style.display = isExtended ? '' : 'none';
+
+      convert();
+    });
   }
 
   // Convert only on button click
@@ -79,9 +125,11 @@
   // Swap units
   if (swapBtn) {
     swapBtn.addEventListener('click', function () {
-      var tmp = fromSel.value;
-      fromSel.value = toSel.value;
-      toSel.value = tmp;
+      var fromActive = getActiveFromSel();
+      var toActive = getActiveToSel();
+      var tmp = fromActive.value;
+      fromActive.value = toActive.value;
+      toActive.value = tmp;
       convert();
     });
   }

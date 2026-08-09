@@ -16,6 +16,13 @@
                     <label class="input-label" for="fromUnit">{{t "label.from"}}</label>
                     <select id="fromUnit" class="form-select">
                         {{range .CurrentCat.Units}}
+                        {{if not .Extended}}
+                        <option value="{{.Code}}" data-gen="{{tgen .Code}}">{{to (printf "unit.%s" .Code)}}</option>
+                        {{end}}
+                        {{end}}
+                    </select>
+                    <select id="fromUnitExtended" class="form-select" style="display:none;">
+                        {{range .CurrentCat.Units}}
                         <option value="{{.Code}}" data-gen="{{tgen .Code}}">{{to (printf "unit.%s" .Code)}}</option>
                         {{end}}
                     </select>
@@ -27,11 +34,25 @@
                     <label class="input-label" for="toUnit">{{t "label.to"}}</label>
                     <select id="toUnit" class="form-select">
                         {{range $i, $u := .CurrentCat.Units}}
+                        {{if not .Extended}}
+                        <option value="{{$u.Code}}" data-gen="{{tgen $u.Code}}" {{if eq $i 1}}selected{{end}}>{{to (printf "unit.%s" $u.Code)}}</option>
+                        {{end}}
+                        {{end}}
+                    </select>
+                    <select id="toUnitExtended" class="form-select" style="display:none;">
+                        {{range $i, $u := .CurrentCat.Units}}
                         <option value="{{$u.Code}}" data-gen="{{tgen $u.Code}}" {{if eq $i 1}}selected{{end}}>{{to (printf "unit.%s" $u.Code)}}</option>
                         {{end}}
                     </select>
                 </div>
             </div>
+
+            {{if .CurrentCat.HasExtended}}
+            <label class="extended-toggle">
+                <input type="checkbox" id="extendedCheckbox">
+                <span class="extended-toggle-label">{{t "checkbox.extended"}}</span>
+            </label>
+            {{end}}
 
             <button class="convert-btn" id="convertBtn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -55,5 +76,12 @@
             </div>
         </div>
     </div>
+
+    {{$desc := to (printf "desc_long.%s" .Slug)}}
+    {{if and $desc (ne $desc (printf "desc_long.%s" .Slug))}}
+    <div class="category-description">
+        <p>{{$desc}}</p>
+    </div>
+    {{end}}
 </div>
 {{end}}
