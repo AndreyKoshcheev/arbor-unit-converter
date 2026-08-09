@@ -163,13 +163,14 @@ func apiConvertHandler(w http.ResponseWriter, r *http.Request) {
 
 func privacyHandler(w http.ResponseWriter, r *http.Request) {
 	lang := getLang(r)
-	tmpl := template.Must(template.ParseFiles("templates/privacy.html"))
-	tmpl.Parse(`{{define "T"}}{{end}}`)
+	funcMap := template.FuncMap{
+		"t": func(key string, args ...interface{}) string { return t(lang, key, args...) },
+	}
+	tmpl := template.Must(template.New("privacy.html").Funcs(funcMap).ParseFiles("templates/privacy.html"))
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	err := tmpl.Execute(w, map[string]interface{}{
 		"Lang": lang,
 		"Title": t(lang, "footer.privacy") + " — " + t(lang, "site.title"),
-		"T": func(key string) string { return t(lang, key) },
 	})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

@@ -6,6 +6,20 @@
     <title>{{.Title}}</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        .privacy-page { max-width: 760px; margin: 0 auto; padding: 8px 0 32px; }
+        .privacy-page h1 { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+        .privacy-page .last-updated { font-size: 13px; color: var(--text-secondary); margin-top: 0; margin-bottom: 24px; }
+        .privacy-page h2 { font-size: 18px; font-weight: 700; margin-top: 28px; margin-bottom: 12px; }
+        .privacy-page h3 { font-size: 16px; font-weight: 600; margin-top: 20px; margin-bottom: 8px; }
+        .privacy-page p, .privacy-page li { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
+        .privacy-page ul, .privacy-page ol { padding-left: 20px; }
+        .privacy-page li { margin-bottom: 6px; }
+        .privacy-page a { color: var(--accent-hover); text-decoration: underline; }
+        .privacy-page a:hover { color: var(--accent); }
+        .privacy-page strong { color: var(--text); }
+        .privacy-page .legal-note { font-size: 12px; color: var(--text-secondary); margin-top: 32px; padding: 16px 20px; background: var(--bg); border-radius: var(--radius-sm); border: 1px solid var(--border); line-height: 1.6; }
+    </style>
 </head>
 <body>
     <div class="app">
@@ -18,7 +32,13 @@
                         {{if eq .Lang "ru"}}
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon"><rect width="3" height="0.667" fill="#fff"/><rect y="0.667" width="3" height="0.666" fill="#0039A6"/><rect y="1.333" width="3" height="0.667" fill="#D52B1E"/></svg>
                         {{else}}
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="flag-icon"><rect width="60" height="30" fill="#012169"/><path fill="#FFF" d="M0 0l60 30M60 0L0 30" stroke="#FFF" stroke-width="6"/><path fill="#C8102E" d="M0 0l60 30M60 0L0 30" stroke="#C8102E" stroke-width="2"/><path fill="#FFF" d="M30 0v30M0 15h60"/><path fill="#C8102E" d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="2"/></g></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="flag-icon">
+                            <rect width="60" height="30" fill="#012169"/>
+                            <path fill="#FFF" d="M0,0v7.5L27.5,30h7.5L0,10V0Z M60,0v7.5L32.5,30H25L60,10V0Z M0,30V22.5L27.5,0h7.5L0,20V30ZM60,30V22.5L32.5,0H25L60,20V30Z"/>
+                            <path fill="#C8102E" d="M0,0v3.75L23.75,30h3.75L0,7.5V0ZM0,30v-3.75L23.75,0h3.75L0,22.5V30ZM60,0v3.75L36.25,30h-3.75L60,7.5V0ZM60,30v-3.75L36.25,0h-3.75L60,22.5V30Z"/>
+                            <path fill="#FFF" d="M25,0v30h10V0H25Z M0,10v10h60V10H0Z"/>
+                            <path fill="#C8102E" d="M27.5,0v30h5V0H27.5Z M0,12.5v5h60v-5H0Z"/>
+                        </svg>
                         {{end}}
                         <span class="lang-arrow">▼</span>
                     </button>
@@ -37,39 +57,302 @@
         </header>
 
         <div class="main">
-            <main class="content" style="margin:0 auto;max-width:720px;">
+            <main class="content" style="margin:0 auto;max-width:760px;">
                 <div class="privacy-page">
-                    <h1>{{.T "footer.privacy"}}</h1>
-                    {{if eq .Lang "ru"}}
-                    <p>Настоящая Политика конфиденциальности описывает, как собираются, используются и защищаются ваши персональные данные при использовании сервиса «ARBOR-CONVERTER.RU».</p>
-                    <h2>1. Какие данные мы собираем</h2>
-                    <p>Мы не собираем и не храним персональные данные пользователей.</p>
-                    <h2>2. Использование Cookie</h2>
-                    <p>Сервис использует cookie-файлы для сохранения выбранного языка интерфейса.</p>
-                    <h2>3. Реклама</h2>
-                    <p>На сайте может отображаться реклама от Яндекс РСЯ.</p>
-                    <h2>4. Контакты</h2>
-                    <p>privacy@arbor-converter.ru</p>
-                    {{else}}
-                    <p>This Privacy Policy describes how your personal data is collected, used and protected when using the «ARBOR-CONVERTER.RU» service.</p>
-                    <h2>1. What data we collect</h2>
-                    <p>We do not collect or store users' personal data.</p>
-                    <h2>2. Use of Cookies</h2>
-                    <p>The service uses cookies to save your language preference.</p>
-                    <h2>3. Advertising</h2>
-                    <p>This site may display ads from Yandex Advertising Network.</p>
-                    <h2>4. Contact</h2>
-                    <p>privacy@arbor-converter.ru</p>
-                    {{end}}
+{{if eq .Lang "ru"}}
+
+
+                    <h1>Политика конфиденциальности</h1>
+                    <p class="last-updated">Последнее обновление: 9 августа 2026 г.</p>
+
+                    <p>Настоящая Политика конфиденциальности персональных данных (далее &mdash; &laquo;Политика&raquo;) действует в отношении всей информации, которую сайт <strong>ARBOR-CONVERTER.RU</strong> (далее &mdash; &laquo;Сайт&raquo;), расположенный на доменном имени <strong>arbor-converter.ru</strong> (а также его субдоменах), может получить о Пользователе во время использования Сайта, его сервисов, программ и продуктов.</p>
+
+                    <h2>1. Общие положения</h2>
+
+                    <h3>1.1. Термины и определения</h3>
+                    <p>В настоящей Политике используются следующие термины:</p>
+                    <ol>
+                        <li><strong>Администрация Сайта</strong> &mdash; уполномоченные лица, которые организуют и/или осуществляют обработку персональных данных, а также определяют цели обработки, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными.</li>
+                        <li><strong>Персональные данные</strong> &mdash; любая информация, относящаяся к прямо или косвенно определённому или определяемому физическому лицу (субъекту персональных данных).</li>
+                        <li><strong>Обработка персональных данных</strong> &mdash; любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без их использования, включая сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение персональных данных.</li>
+                        <li><strong>Конфиденциальность персональных данных</strong> &mdash; обязательное для соблюдения требование не допускать распространения персональных данных без согласия субъекта или наличия иного законного основания.</li>
+                        <li><strong>Сайт</strong> &mdash; совокупность связанных между собой веб-страниц, размещённых в сети Интернет по уникальному адресу (URL): https://arbor-converter.ru, а также его субдомены.</li>
+                        <li><strong>Субдомены</strong> &mdash; страницы или совокупность страниц, расположенные на доменах третьего уровня, принадлежащие Сайту arbor-converter.ru.</li>
+                        <li><strong>Пользователь</strong> &mdash; лицо, имеющее доступ к Сайту посредством сети Интернет и использующее информацию, материалы и сервисы Сайта.</li>
+                        <li><strong>Cookie</strong> &mdash; небольшой фрагмент данных, отправленный веб-сервером и хранимый на устройстве пользователя, который веб-браузер каждый раз пересылает веб-серверу в HTTP-запросе при попытке открыть страницу соответствующего сайта.</li>
+                        <li><strong>IP-адрес</strong> &mdash; уникальный сетевой адрес узла в компьютерной сети, построенной по протоколу IP.</li>
+                    </ol>
+
+                    <h3>1.2. Общие положения Политики</h3>
+                    <p>1.2.1. Используя Сайт, Пользователь выражает своё безоговорочное согласие с условиями настоящей Политики. Если Пользователь не согласен с условиями Политики, он должен прекратить использование Сайта.</p>
+                    <p>1.2.2. Настоящая Политика применяется ко всей информации, которую Администрация Сайта может получить о Пользователе во время использования им Сайта, включая все его разделы, страницы и API-интерфейсы.</p>
+                    <p>1.2.3. Обработка персональных данных осуществляется в соответствии с Федеральным законом Российской Федерации от 27 июля 2006 года № 152-ФЗ &laquo;О персональных данных&raquo;.</p>
+                    <p>1.2.4. Администрация Сайта является резидентом Российской Федерации. Все вопросы, не урегулированные настоящей Политикой, разрешаются в соответствии с действующим законодательством Российской Федерации.</p>
+
+                    <h2>2. Персональная информация Пользователя</h2>
+
+                    <h3>2.1. Состав персональной информации</h3>
+                    <p>2.1.1. Под персональной информацией в настоящей Политике понимается:</p>
+                    <ul>
+                        <li>Информация, предоставляемая Пользователем самостоятельно (если применимо).</li>
+                        <li>Данные, которые передаются в автоматическом режиме в процессе использования Сайта.</li>
+                    </ul>
+                    <p>2.1.2. <strong>Сайт не собирает и не хранит персональные данные, позволяющие идентифицировать Пользователя как физическое лицо:</strong> фамилию, имя, отчество, адрес электронной почты, номер телефона, паспортные данные, ИНН, СНИЛС, адрес проживания, банковские реквизиты или любые иные сведения аналогичного характера.</p>
+                    <p>2.1.3. Сайт не требует регистрации, создания учётной записи или авторизации. Пользователь может использовать все функции Сайта анонимно. Все операции конвертации выполняются в рамках текущего сеанса; введённые значения не сохраняются на стороне сервера.</p>
+
+                    <h3>2.2. Автоматически собираемые данные</h3>
+                    <p>2.2.1. При использовании Сайта автоматически передаются стандартные технические данные, которые устройство и браузер Пользователя сообщают при любом обращении к веб-сайту:</p>
+                    <ul>
+                        <li>IP-адрес (обрабатывается исключительно для маршрутизации трафика и целей безопасности);</li>
+                        <li>Тип, версия и язык браузера;</li>
+                        <li>Тип и версия операционной системы устройства;</li>
+                        <li>Разрешение экрана и технические характеристики устройства;</li>
+                        <li>Дата и время запроса;</li>
+                        <li>Страницы, посещённые в рамках Сайта, и последовательность их просмотра;</li>
+                        <li>Источник перехода (реферер) &mdash; URL сайта, с которого Пользователь перешёл на Сайт;</li>
+                        <li>Идентификатор пользователя, хранимый в cookie.</li>
+                    </ul>
+                    <p>2.2.2. Указанные данные обрабатываются в обезличенном виде для обеспечения работоспособности Сайта, сбора статистики, отладки и защиты от атак. Журналы запросов могут временно храниться на стороне хостинг-провайдера и автоматически удаляться по истечении технически необходимого срока.</p>
+
+                    <h3>2.3. Достоверность информации</h3>
+                    <p>2.3.1. Администрация Сайта не проверяет достоверность автоматически собираемой информации, поскольку такая информация является технической и не требует верификации.</p>
+                    <p>2.3.2. Обработка данных осуществляется только при условии согласия Пользователя, выраженного в порядке, предусмотренном настоящей Политикой.</p>
+
+                    <h2>3. Цели сбора и обработки персональной информации</h2>
+                    <p>3.1. <strong>Обеспечение функционирования сервиса конвертации</strong> &mdash; предоставление Пользователю возможности выполнять онлайн-конвертацию между различными единицами измерения.</p>
+                    <p>3.2. <strong>Улучшение качества работы Сайта</strong> &mdash; анализ обезличенных данных для оптимизации интерфейса, функциональности и производительности.</p>
+                    <p>3.3. <strong>Сбор статистики посещаемости</strong> &mdash; анализ поведения Пользователей с использованием инструментов веб-аналитики для понимания популярности разделов и улучшения контента.</p>
+                    <p>3.4. <strong>Обеспечение безопасности</strong> &mdash; защита Сайта от атак, несанкционированного доступа и других противоправных действий.</p>
+                    <p>3.5. <strong>Показ рекламных объявлений</strong> &mdash; отображение контекстной рекламы с использованием рекламных сетей третьих лиц.</p>
+                    <p>3.6. Не допускается обработка персональной информации, несовместимая с целями, перечисленными в настоящем разделе.</p>
+
+                    <h2>4. Использование Cookie-файлов</h2>
+                    <p>4.1. Сайт использует минимально необходимый набор cookie-файлов для обеспечения работы и улучшения пользовательского опыта.</p>
+                    <p>4.2. <strong>Технические cookie (собственные):</strong></p>
+                    <ul>
+                        <li><strong>lang</strong> &mdash; сохраняет выбранный язык интерфейса (RU или EN). Не содержит персональных данных. Срок хранения: 1 год.</li>
+                    </ul>
+                    <p>4.3. <strong>Сторонние cookie (Яндекс):</strong></p>
+                    <ul>
+                        <li>Рекламная сеть Яндекса (Яндекс.Директ / РСЯ) может устанавливать собственные cookie-файлы для показа релевантных рекламных объявлений и сбора статистики показов. Обработка данных осуществляется Яндексом в соответствии с <a href="https://yandex.ru/legal/confidential" target="_blank" rel="noopener">Политикой конфиденциальности Яндекса</a>.</li>
+                        <li>Яндекс.Метрика использует cookie для сбора обезличенной статистики посещаемости (количество посетителей, просмотры страниц, источники трафика, поведение на сайте).</li>
+                    </ul>
+                    <p>4.4. Пользователь может в любой момент удалить cookie через настройки браузера или использовать режим &laquo;Инкогнито&raquo; / &laquo;Приватный просмотр&raquo;. Отключение cookie может повлиять на доступность некоторых функций Сайта (например, выбор языка не будет сохраняться между сеансами).</p>
+
+                    <h2>5. Реклама и сторонние сервисы</h2>
+                    <p>5.1. На страницах Сайта может отображаться контекстная реклама от <strong>Яндекс.Директ / РСЯ (Рекламная сеть Яндекса)</strong>.</p>
+                    <p>5.2. Для показа рекламы Яндекс может использовать cookie-файлы, веб-маяки, пиксельные теги и другие технологии трекинга, собирающие обезличенную информацию о предпочтениях и поведении Пользователя в сети.</p>
+                    <p>5.3. Администрация Сайта не контролирует, не имеет доступа к данным, собираемым Яндексом, и не передаёт Яндексу персональную информацию о Пользователе.</p>
+                    <p>5.4. Использование рекламных сервисов Яндекса регулируется <a href="https://yandex.ru/legal/confidential" target="_blank" rel="noopener">Политикой конфиденциальности Яндекса</a> и <a href="https://yandex.ru/legal/personal_data_agreement" target="_blank" rel="noopener">Соглашением об обработке персональных данных Яндекса</a>.</p>
+                    <p>5.5. Реклама может быть персонализированной. Пользователь может управлять настройками персонализации рекламы на странице <a href="https://yandex.ru/adv/user-settings" target="_blank" rel="noopener">«Настройки рекламных объявлений Яндекса»</a> или отказаться от персонализированной рекламы через настройки браузера и cookie.</p>
+                    <p>5.6. Сайт может использовать <strong>Яндекс.Метрику</strong> &mdash; инструмент веб-аналитики для сбора обезличенной статистики посещаемости. Собранные данные передаются и хранятся на серверах Яндекса. Пользователь может отключить сбор данных Яндекс.Метрикой с помощью <a href="https://yandex.ru/support/metrica/general/opt-out.html" target="_blank" rel="noopener">официального расширения для браузера</a>.</p>
+
+                    <h2>6. Условия обработки персональной информации и её передачи третьим лицам</h2>
+                    <p>6.1. В отношении персональной информации Пользователя сохраняется её конфиденциальность, кроме случаев, предусмотренных действующим законодательством.</p>
+                    <p>6.2. Администрация Сайта вправе передать персональную информацию Пользователя третьим лицам в следующих случаях:</p>
+                    <ul>
+                        <li>Пользователь выразил согласие на такие действия;</li>
+                        <li>Передача необходима в рамках использования Пользователем Сайта (например, передача данных хостинг-провайдеру для обеспечения работы Сайта);</li>
+                        <li>Передача предусмотрена российским или иным применимым законодательством в рамках установленной законом процедуры;</li>
+                        <li>Такая передача происходит в рамках продажи или иной передачи бизнеса (полностью или частично), при этом к приобретателю переходят все обязательства по соблюдению условий настоящей Политики;</li>
+                        <li>В целях обеспечения возможности защиты прав и законных интересов Администрации Сайта или третьих лиц.</li>
+                    </ul>
+                    <p>6.3. <strong>Сайт не продаёт, не обменивает и не передаёт персональные данные Пользователей третьим лицам в коммерческих целях.</strong></p>
+                    <p>6.4. При обработке персональных данных Администрация Сайта руководствуется законодательством Российской Федерации.</p>
+
+                    <h2>7. Хранение и защита персональной информации</h2>
+                    <p>7.1. Администрация Сайта принимает технические, организационные и правовые меры для защиты персональных данных Пользователя от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения, а также от иных неправомерных действий:</p>
+                    <ul>
+                        <li>Использование HTTPS-шифрования (TLS) для всех соединений с Сайтом;</li>
+                        <li>Регулярное обновление серверного и клиентского программного обеспечения;</li>
+                        <li>Минимизация сбора и хранения данных &mdash; Администрация хранит только те данные, которые технически необходимы для функционирования Сайта;</li>
+                        <li>Ограничение доступа к данным неуполномоченных лиц;</li>
+                        <li>Применение сетевых экранов и систем обнаружения вторжений.</li>
+                    </ul>
+                    <p>7.2. Срок обработки персональных данных &mdash; до момента достижения целей обработки или до момента отзыва Пользователем согласия на обработку персональных данных &mdash; в зависимости от того, какой из указанных юридических фактов наступит раньше.</p>
+
+                    <h2>8. Конфиденциальность детей</h2>
+                    <p>8.1. Сайт не предназначен для лиц младше 18 лет. Администрация Сайта не собирает сознательно персональные данные несовершеннолетних.</p>
+                    <p>8.2. Если Администрации Сайта станет известно, что персональные данные ребёнка были предоставлены без согласия родителя или опекуна, такие данные будут незамедлительно удалены.</p>
+                    <p>8.3. Если вам стало известно, что ребёнок предоставил нам персональные данные, пожалуйста, свяжитесь с нами по адресу <a href="mailto:privacy@arbor-converter.ru">privacy@arbor-converter.ru</a>.</p>
+
+                    <h2>9. Права Пользователя</h2>
+                    <p>9.1. В соответствии с Федеральным законом &laquo;О персональных данных&raquo; № 152-ФЗ Пользователь имеет право:</p>
+                    <ul>
+                        <li>Получить информацию, касающуюся обработки его персональных данных;</li>
+                        <li>Требовать уточнения, блокирования или уничтожения своих персональных данных;</li>
+                        <li>Отозвать согласие на обработку персональных данных;</li>
+                        <li>Обжаловать действия (бездействие) оператора в уполномоченном органе по защите прав субъектов персональных данных (Роскомнадзор).</li>
+                    </ul>
+                    <p>9.2. Поскольку Сайт не собирает и не хранит персональные данные Пользователя, реализация указанных прав осуществляется путём прекращения использования Сайта. Для направления обращения, связанного с обработкой персональных данных, Пользователь может направить запрос на электронную почту: <a href="mailto:privacy@arbor-converter.ru">privacy@arbor-converter.ru</a>.</p>
+                    <p>9.3. Запрос должен содержать: номер основного документа, удостоверяющего личность Пользователя (или его представителя), сведения о дате выдачи указанного документа и выдавшем его органе, а также информацию, подтверждающую участие Пользователя в отношениях с Администрацией Сайта.</p>
+
+                    <h2>10. Ссылки на сторонние сайты</h2>
+                    <p>10.1. Сайт может содержать ссылки на сторонние веб-сайты (в том числе рекламные объявления, ссылки на партнёров). Администрация Сайта не несёт ответственности за политику конфиденциальности, содержание или безопасность таких сайтов.</p>
+                    <p>10.2. Рекомендуем Пользователю ознакомиться с политиками конфиденциальности соответствующих третьих сторон перед предоставлением им каких-либо данных.</p>
+
+                    <h2>11. Изменения Политики конфиденциальности</h2>
+                    <p>11.1. Администрация Сайта оставляет за собой право вносить изменения в настоящую Политику. При внесении изменений в актуальной редакции указывается дата последнего обновления.</p>
+                    <p>11.2. Новая редакция Политики вступает в силу с момента её размещения на Сайте, если иное не предусмотрено новой редакцией.</p>
+                    <p>11.3. Действующая редакция Политики всегда доступна по адресу: <strong>https://arbor-converter.ru/privacy</strong>.</p>
+                    <p>11.4. В случае существенных изменений Администрация уведомляет Пользователей путём размещения соответствующего уведомления на Сайте. Продолжение использования Сайта после внесения изменений означает согласие Пользователя с обновлённой Политикой.</p>
+
+                    <h2>12. Контактная информация</h2>
+                    <p>12.1. По всем вопросам, связанным с обработкой персональных данных, соблюдением положений настоящей Политики, а также по вопросам отзыва согласия на обработку персональных данных Пользователь может обратиться к Администрации Сайта:</p>
+                    <p><strong>Электронная почта:</strong> <a href="mailto:privacy@arbor-converter.ru">privacy@arbor-converter.ru</a></p>
+
+                    <p class="legal-note">Настоящая Политика действует бессрочно до её замены новой редакцией. Политика конфиденциальности обновлена 9 августа 2026 года.</p>{{else}}
+
+
+                    <h1>Privacy Policy</h1>
+                    <p class="last-updated">Last updated: August 9, 2026</p>
+
+                    <p>This Privacy Policy (the &laquo;Policy&raquo;) governs all information that <strong>ARBOR-CONVERTER.RU</strong> (the &laquo;Site&raquo;), located at the domain <strong>arbor-converter.ru</strong> (including its subdomains), may obtain about the User while they use the Site, its services, programs and products.</p>
+
+                    <h2>1. General Provisions</h2>
+
+                    <h3>1.1. Terms and Definitions</h3>
+                    <p>The following terms are used in this Policy:</p>
+                    <ol>
+                        <li><strong>Site Administration</strong> &mdash; authorized persons who organize and/or process personal data, determine the purposes of processing, the composition of personal data to be processed, and the actions (operations) performed with personal data.</li>
+                        <li><strong>Personal Data</strong> &mdash; any information relating to a directly or indirectly identified or identifiable natural person (data subject).</li>
+                        <li><strong>Processing of Personal Data</strong> &mdash; any action (operation) or set of actions (operations) performed with or without the use of automation, including collection, recording, systematization, accumulation, storage, clarification (updating, modification), extraction, use, transfer (distribution, provision, access), depersonalization, blocking, deletion, destruction of personal data.</li>
+                        <li><strong>Confidentiality of Personal Data</strong> &mdash; a mandatory requirement for the Operator or any other person who has obtained access to personal data to prevent their dissemination without the consent of the data subject or another legal basis.</li>
+                        <li><strong>Site</strong> &mdash; a set of interconnected web pages available on the Internet at the unique URL: https://arbor-converter.ru, including its subdomains.</li>
+                        <li><strong>Subdomains</strong> &mdash; pages or sets of pages located on third-level domains belonging to arbor-converter.ru.</li>
+                        <li><strong>User</strong> &mdash; any person who accesses the Site via the Internet and uses the information, materials and services of the Site.</li>
+                        <li><strong>Cookie</strong> &mdash; a small piece of data sent by a web server and stored on the user&rsquo;s device, which is sent back to the server with each HTTP request.</li>
+                        <li><strong>IP Address</strong> &mdash; a unique network address of a node in a computer network built on the IP protocol.</li>
+                    </ol>
+
+                    <h3>1.2. General Policy Provisions</h3>
+                    <p>1.2.1. By using the Site, the User expresses their unconditional consent to the terms of this Policy. If the User does not agree with the Policy, they must discontinue use of the Site.</p>
+                    <p>1.2.2. This Policy applies to all information that the Site Administration may obtain about the User during their use of the Site, including all its sections, pages and API interfaces.</p>
+                    <p>1.2.3. The processing of personal data is carried out in accordance with Federal Law of the Russian Federation No. 152-FZ of July 27, 2006 &laquo;On Personal Data&raquo;.</p>
+                    <p>1.2.4. The Site Administration is a resident of the Russian Federation. All matters not regulated by this Policy are resolved in accordance with the applicable laws of the Russian Federation.</p>
+
+                    <h2>2. User&rsquo;s Personal Information</h2>
+
+                    <h3>2.1. Composition of Personal Information</h3>
+                    <p>2.1.1. Personal information under this Policy includes:</p>
+                    <ul>
+                        <li>Information voluntarily provided by the User (if applicable).</li>
+                        <li>Data automatically transmitted during the use of the Site.</li>
+                    </ul>
+                    <p>2.1.2. <strong>The Site does not collect or store personal data that could identify the User as an individual:</strong> last name, first name, patronymic, email address, phone number, passport details, TIN, SNILS, residential address, banking details or any other similar information.</p>
+                    <p>2.1.3. The Site does not require registration, account creation or authorization. Users may use all features of the Site anonymously. All conversion operations are performed within the current session; entered values are not stored on the server side.</p>
+
+                    <h3>2.2. Automatically Collected Data</h3>
+                    <p>2.2.1. When using the Site, standard technical data is automatically transmitted by the User&rsquo;s device and browser as part of any web request:</p>
+                    <ul>
+                        <li>IP address (processed solely for traffic routing and security purposes);</li>
+                        <li>Browser type, version and language;</li>
+                        <li>Operating system type and version;</li>
+                        <li>Screen resolution and device technical specifications;</li>
+                        <li>Date and time of the request;</li>
+                        <li>Pages visited within the Site and their viewing sequence;</li>
+                        <li>Referrer URL &mdash; the address from which the User came to the Site;</li>
+                        <li>User identifier stored in cookies.</li>
+                    </ul>
+                    <p>2.2.2. This data is processed in an anonymized form to ensure the Site&rsquo;s functionality, statistical analysis, debugging and protection against attacks. Request logs may be temporarily stored by the hosting provider and automatically deleted after the technically necessary retention period.</p>
+
+                    <h3>2.3. Accuracy of Information</h3>
+                    <p>2.3.1. The Site Administration does not verify the accuracy of automatically collected information, as such information is technical in nature and does not require verification.</p>
+                    <p>2.3.2. Data processing is carried out only with the User&rsquo;s consent, expressed in the manner provided for in this Policy.</p>
+
+                    <h2>3. Purposes of Collection and Processing of Personal Information</h2>
+                    <p>3.1. <strong>Ensuring the functionality of the conversion service</strong> &mdash; providing the User with the ability to perform online conversion between different units of measurement.</p>
+                    <p>3.2. <strong>Improving the quality of the Site</strong> &mdash; analyzing anonymized data to optimize the interface, functionality and performance.</p>
+                    <p>3.3. <strong>Collecting traffic statistics</strong> &mdash; analyzing User behavior using web analytics tools to understand the popularity of sections and improve content.</p>
+                    <p>3.4. <strong>Ensuring security</strong> &mdash; protecting the Site from attacks, unauthorized access and other unlawful actions.</p>
+                    <p>3.5. <strong>Displaying advertisements</strong> &mdash; showing contextual advertisements using third-party advertising networks.</p>
+                    <p>3.6. Processing of personal information that is incompatible with the purposes listed in this section is not permitted.</p>
+
+                    <h2>4. Use of Cookies</h2>
+                    <p>4.1. The Site uses a minimal set of cookies to ensure operation and improve user experience.</p>
+                    <p>4.2. <strong>Technical cookies (first-party):</strong></p>
+                    <ul>
+                        <li><strong>lang</strong> &mdash; stores the selected interface language (RU or EN). Does not contain personal data. Retention period: 1 year.</li>
+                    </ul>
+                    <p>4.3. <strong>Third-party cookies (Yandex):</strong></p>
+                    <ul>
+                        <li>The Yandex Advertising Network (Yandex.Direct / YAN) may set its own cookies to serve relevant advertisements and collect impression statistics. Data processing is carried out by Yandex in accordance with the <a href="https://yandex.com/legal/confidential" target="_blank" rel="noopener">Yandex Privacy Policy</a>.</li>
+                        <li>Yandex.Metrica uses cookies to collect anonymized traffic statistics (visitor count, page views, traffic sources, on-site behavior).</li>
+                    </ul>
+                    <p>4.4. Users may delete cookies at any time through their browser settings or use private browsing mode. Disabling cookies may affect the availability of certain Site features (e.g., language preference will not be saved between sessions).</p>
+
+                    <h2>5. Advertising and Third-Party Services</h2>
+                    <p>5.1. The Site may display contextual advertisements from the <strong>Yandex Advertising Network (Yandex.Direct / YAN)</strong>.</p>
+                    <p>5.2. To serve advertisements, Yandex may use cookies, web beacons, pixel tags and other tracking technologies that collect anonymized information about Users&rsquo; preferences and online behavior.</p>
+                    <p>5.3. The Site Administration does not control or have access to data collected by Yandex, and does not share any personal information about Users with Yandex.</p>
+                    <p>5.4. The use of Yandex&rsquo;s advertising services is governed by the <a href="https://yandex.com/legal/confidential" target="_blank" rel="noopener">Yandex Privacy Policy</a> and the <a href="https://yandex.com/legal/personal_data_agreement" target="_blank" rel="noopener">Yandex Personal Data Processing Agreement</a>.</p>
+                    <p>5.5. Advertising may be personalized. Users can manage their ad personalization settings on the <a href="https://yandex.com/adv/user-settings" target="_blank" rel="noopener">Yandex Ad Settings</a> page or opt out of personalized advertising through browser and cookie settings.</p>
+                    <p>5.6. The Site may use <strong>Yandex.Metrica</strong>, a web analytics tool that collects anonymized traffic statistics. The collected data is transmitted to and stored on Yandex&rsquo;s servers. Users can opt out of Yandex.Metrica data collection using the <a href="https://yandex.com/support/metrica/general/opt-out.html" target="_blank" rel="noopener">official browser extension</a>.</p>
+
+                    <h2>6. Conditions for Processing and Transfer of Personal Information to Third Parties</h2>
+                    <p>6.1. The confidentiality of the User&rsquo;s personal information is maintained, except as otherwise provided by applicable law.</p>
+                    <p>6.2. The Site Administration may transfer the User&rsquo;s personal information to third parties in the following cases:</p>
+                    <ul>
+                        <li>The User has consented to such actions;</li>
+                        <li>The transfer is necessary for the User&rsquo;s use of the Site (e.g., data transfer to the hosting provider to ensure Site operation);</li>
+                        <li>The transfer is required by Russian or other applicable law within a legally established procedure;</li>
+                        <li>Such transfer occurs in connection with the sale or other transfer of the business (in whole or in part), with all obligations to comply with this Policy passing to the acquirer;</li>
+                        <li>To protect the rights and legitimate interests of the Site Administration or third parties.</li>
+                    </ul>
+                    <p>6.3. <strong>The Site does not sell, exchange or transfer Users&rsquo; personal data to third parties for commercial purposes.</strong></p>
+                    <p>6.4. When processing personal data, the Site Administration is guided by the legislation of the Russian Federation.</p>
+
+                    <h2>7. Storage and Protection of Personal Information</h2>
+                    <p>7.1. The Site Administration takes technical, organizational and legal measures to protect the User&rsquo;s personal data from unauthorized or accidental access, destruction, alteration, blocking, copying, distribution, and other unlawful actions:</p>
+                    <ul>
+                        <li>Use of HTTPS encryption (TLS) for all connections to the Site;</li>
+                        <li>Regular updates of server and client software;</li>
+                        <li>Data minimization &mdash; the Administration only retains data that is technically necessary for the Site to function;</li>
+                        <li>Restricting access to data by unauthorized persons;</li>
+                        <li>Use of firewalls and intrusion detection systems.</li>
+                    </ul>
+                    <p>7.2. The period for processing personal data is until the purposes of processing are achieved or until the User withdraws consent to the processing of personal data, whichever occurs first.</p>
+
+                    <h2>8. Children&rsquo;s Privacy</h2>
+                    <p>8.1. The Site is not intended for individuals under the age of 18. The Site Administration does not knowingly collect personal data from minors.</p>
+                    <p>8.2. If the Site Administration becomes aware that a child&rsquo;s personal data has been provided without parental or guardian consent, such data will be immediately deleted.</p>
+                    <p>8.3. If you believe that a child has provided us with personal data, please contact us at <a href="mailto:privacy@arbor-converter.ru">privacy@arbor-converter.ru</a>.</p>
+
+                    <h2>9. User Rights</h2>
+                    <p>9.1. In accordance with applicable data protection laws, the User has the right to:</p>
+                    <ul>
+                        <li>Obtain information regarding the processing of their personal data;</li>
+                        <li>Request clarification, blocking or destruction of their personal data;</li>
+                        <li>Withdraw consent to the processing of personal data;</li>
+                        <li>Lodge a complaint with the relevant supervisory authority.</li>
+                    </ul>
+                    <p>9.2. Since the Site does not collect or store the User&rsquo;s personal data, exercising these rights is achieved by discontinuing the use of the Site. To submit a request related to the processing of personal data, the User may send an inquiry to: <a href="mailto:privacy@arbor-converter.ru">privacy@arbor-converter.ru</a>.</p>
+                    <p>9.3. The request must include: the number of the main identification document of the User (or their representative), information about the date of issue of such document and the issuing authority, as well as information confirming the User&rsquo;s relationship with the Site Administration.</p>
+
+                    <h2>10. Links to Third-Party Websites</h2>
+                    <p>10.1. The Site may contain links to third-party websites (including advertisements, links to partners). The Site Administration is not responsible for the privacy practices, content or security of such websites.</p>
+                    <p>10.2. We encourage Users to review the privacy policies of any third-party services before providing them with any data.</p>
+
+                    <h2>11. Changes to This Privacy Policy</h2>
+                    <p>11.1. The Site Administration reserves the right to amend this Policy. When amendments are made, the date of the last update is indicated in the current version.</p>
+                    <p>11.2. The new version of the Policy takes effect upon its publication on the Site, unless otherwise provided by the new version.</p>
+                    <p>11.3. The current version of the Policy is always available at: <strong>https://arbor-converter.ru/privacy</strong>.</p>
+                    <p>11.4. In the event of material changes, the Administration will notify Users by posting a notice on the Site. Continued use of the Site after changes constitutes the User&rsquo;s acceptance of the updated Policy.</p>
+
+                    <h2>12. Contact Information</h2>
+                    <p>12.1. For any questions regarding the processing of personal data, compliance with this Policy, or withdrawal of consent to the processing of personal data, the User may contact the Site Administration:</p>
+                    <p><strong>Email:</strong> <a href="mailto:privacy@arbor-converter.ru">privacy@arbor-converter.ru</a></p>
+
+                    <p class="legal-note">This Policy is valid indefinitely until replaced by a new version. This Privacy Policy was last updated on August 9, 2026.</p>{{end}}
                 </div>
             </main>
         </div>
 
         <footer class="footer">
             <div class="footer-inner">
-                <p class="footer-text">© 2026 — Arbor-converter.ru — конвертеры единиц измерений</p>
+                <p class="footer-text">&copy; 2026 &mdash; Arbor-converter.ru &mdash; конвертеры единиц измерений</p>
                 <div class="footer-links">
-                    <a href="/privacy" class="footer-link">{{.T "footer.privacy"}}</a>
+                    <a href="/privacy" class="footer-link">{{t "footer.privacy"}}</a>
                 </div>
             </div>
         </footer>
@@ -77,17 +360,17 @@
 
     <script>
         (function() {
-            var langToggle = document.getElementById('langToggle');
-            var langMenu = document.getElementById('langMenu');
+            var langToggle = document.getElementById("langToggle");
+            var langMenu = document.getElementById("langMenu");
             if (langToggle && langMenu) {
-                langToggle.addEventListener('click', function(e) {
+                langToggle.addEventListener("click", function(e) {
                     e.stopPropagation();
-                    langMenu.classList.toggle('visible');
+                    langMenu.classList.toggle("visible");
                 });
-                document.addEventListener('click', function() {
-                    langMenu.classList.remove('visible');
+                document.addEventListener("click", function() {
+                    langMenu.classList.remove("visible");
                 });
-                langMenu.addEventListener('click', function(e) {
+                langMenu.addEventListener("click", function(e) {
                     e.stopPropagation();
                 });
             }
