@@ -41,18 +41,163 @@
                         </a>
                     </div>
                 </div>
+            </div>
             <div class="header-nav-mobile" id="headerNavMobile">
                 <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
-                <a href="/engineering" class="header-nav-link">{{t "nav.engineering"}}</a>
+                <a href="/engineering" class="header-nav-link active">{{t "nav.engineering"}}</a>
             </div>
-          </div>
         </header>
 
         <div class="main home-main">
             <main class="home-content">
-                <div class="home-header">
-                    <h1 class="home-title">{{t "nav.engineering"}}</h1>
-                    <p class="home-subtitle">Coming soon</p>
+                <div class="eng-page">
+                    <div class="eng-layout">
+                        <div class="eng-calculator">
+                            <div class="eng-display" id="engDisplay">
+                                <div class="eng-mode-badge" id="engModeBadge">DEG</div>
+                                <button class="eng-copy-btn" id="engCopyBtn" title="{{t "btn.copy"}}">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                </button>
+                                <div class="eng-expression" id="engExpression"></div>
+                                <div class="eng-result" id="engResult">0</div>
+                            </div>
+                            <div class="eng-buttons">
+                                <!-- Row 1: Mode & Memory -->
+                                <button class="eng-btn eng-btn-mode" data-action="mode">DEG</button>
+                                <button class="eng-btn eng-btn-mem" data-action="mc">MC</button>
+                                <button class="eng-btn eng-btn-mem" data-action="mr">MR</button>
+                                <button class="eng-btn eng-btn-mem" data-action="mplus">M+</button>
+                                <button class="eng-btn eng-btn-mem" data-action="mminus">M−</button>
+                                <button class="eng-btn eng-btn-mem" data-action="ms">MS</button>
+
+                                <!-- Row 2: Hyperbolic -->
+                                <button class="eng-btn eng-btn-hyper" data-action="sinh">sinh</button>
+                                <button class="eng-btn eng-btn-hyper" data-action="cosh">cosh</button>
+                                <button class="eng-btn eng-btn-hyper" data-action="tanh">tanh</button>
+                                <button class="eng-btn eng-btn-hyper" data-action="asinh">arsinh</button>
+                                <button class="eng-btn eng-btn-hyper" data-action="acosh">arcosh</button>
+                                <button class="eng-btn eng-btn-hyper" data-action="atanh">artanh</button>
+
+                                <!-- Row 3: Trigonometric -->
+                                <button class="eng-btn eng-btn-trig" data-action="sin">sin</button>
+                                <button class="eng-btn eng-btn-trig" data-action="cos">cos</button>
+                                <button class="eng-btn eng-btn-trig" data-action="tan">tan</button>
+                                <button class="eng-btn eng-btn-trig" data-action="asin">arcsin</button>
+                                <button class="eng-btn eng-btn-trig" data-action="acos">arccos</button>
+                                <button class="eng-btn eng-btn-trig" data-action="atan">arctan</button>
+
+                                <!-- Row 4: Power & Root -->
+                                <button class="eng-btn eng-btn-power" data-action="square">x²</button>
+                                <button class="eng-btn eng-btn-power" data-action="cube">x³</button>
+                                <button class="eng-btn eng-btn-power" data-action="pow">xʸ</button>
+                                <button class="eng-btn eng-btn-power" data-action="sqrt">√</button>
+                                <button class="eng-btn eng-btn-power" data-action="cbrt">∛</button>
+                                <button class="eng-btn eng-btn-power" data-action="inv">1/x</button>
+
+                                <!-- Row 5: Logarithmic & Exponential -->
+                                <button class="eng-btn eng-btn-log" data-action="log">log</button>
+                                <button class="eng-btn eng-btn-log" data-action="ln">ln</button>
+                                <button class="eng-btn eng-btn-log" data-action="ten_pow">10ˣ</button>
+                                <button class="eng-btn eng-btn-log" data-action="exp">eˣ</button>
+                                <button class="eng-btn eng-btn-log" data-action="ee">EE</button>
+                                <button class="eng-btn eng-btn-log" data-action="log2">log₂</button>
+
+                                <!-- Row 6: Special functions -->
+                                <button class="eng-btn eng-btn-special" data-action="pi">π</button>
+                                <button class="eng-btn eng-btn-special" data-action="e">e</button>
+                                <button class="eng-btn eng-btn-special" data-action="factorial">x!</button>
+                                <button class="eng-btn eng-btn-special" data-action="abs">abs</button>
+                                <button class="eng-btn eng-btn-special" data-action="percent">%</button>
+                                <button class="eng-btn eng-btn-special" data-action="rnd">Rand</button>
+
+                                <!-- Row 7: Clear & parens -->
+                                <button class="eng-btn eng-btn-clear" data-action="clear">C</button>
+                                <button class="eng-btn eng-btn-func" data-action="backspace">⌫</button>
+                                <button class="eng-btn eng-btn-func" data-action="lparen">(</button>
+                                <button class="eng-btn eng-btn-func" data-action="rparen">)</button>
+                                <button class="eng-btn eng-btn-special" data-action="sign">±</button>
+                                <button class="eng-btn eng-btn-special" data-action="mod">Mod</button>
+
+                                <!-- Row 8: Numbers 7-9 + ops -->
+                                <button class="eng-btn eng-btn-num" data-action="7">7</button>
+                                <button class="eng-btn eng-btn-num" data-action="8">8</button>
+                                <button class="eng-btn eng-btn-num" data-action="9">9</button>
+                                <button class="eng-btn eng-btn-op" data-action="divide">÷</button>
+                                <button class="eng-btn eng-btn-op" data-action="multiply">×</button>
+                                <button class="eng-btn eng-btn-special" data-action="int">Int</button>
+
+                                <!-- Row 9: Numbers 4-6 + ops -->
+                                <button class="eng-btn eng-btn-num" data-action="4">4</button>
+                                <button class="eng-btn eng-btn-num" data-action="5">5</button>
+                                <button class="eng-btn eng-btn-num" data-action="6">6</button>
+                                <button class="eng-btn eng-btn-op" data-action="subtract">−</button>
+                                <button class="eng-btn eng-btn-op" data-action="add">+</button>
+                                <button class="eng-btn eng-btn-special" data-action="ans">Ans</button>
+
+                                <!-- Row 10: Numbers 0-3 + equals -->
+                                <button class="eng-btn eng-btn-num" data-action="1">1</button>
+                                <button class="eng-btn eng-btn-num" data-action="2">2</button>
+                                <button class="eng-btn eng-btn-num" data-action="3">3</button>
+                                <button class="eng-btn eng-btn-num" data-action="0">0</button>
+                                <button class="eng-btn eng-btn-num" data-action="decimal">.</button>
+                                <button class="eng-btn eng-btn-equals" data-action="equals">=</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eng-color-legend">
+                        <span class="eng-legend-item"><span class="eng-legend-dot" style="background:#3b82f6"></span>{{t "eng_legend.trig"}}</span>
+                        <span class="eng-legend-item"><span class="eng-legend-dot" style="background:#8b5cf6"></span>{{t "eng_legend.power"}}</span>
+                        <span class="eng-legend-item"><span class="eng-legend-dot" style="background:#f59e0b"></span>{{t "eng_legend.log"}}</span>
+                        <span class="eng-legend-item"><span class="eng-legend-dot" style="background:#06b6d4"></span>{{t "eng_legend.hyper"}}</span>
+                        <span class="eng-legend-item"><span class="eng-legend-dot" style="background:#ec4899"></span>{{t "eng_legend.special"}}</span>
+                        <span class="eng-legend-item"><span class="eng-legend-dot" style="background:#6366f1"></span>{{t "eng_legend.memory"}}</span>
+                        <span class="eng-legend-item"><span class="eng-legend-dot" style="background:#16a34a"></span>{{t "eng_legend.ops"}}</span>
+                    </div>
+
+                    <div class="eng-history" id="engHistory">
+                        <div class="eng-history-header">
+                            <span>{{t "calculator.history"}}</span>
+                            <button class="eng-history-clear" id="engHistoryClear">{{t "calculator.clear"}}</button>
+                        </div>
+                        <div class="eng-history-list" id="engHistoryList"></div>
+                        <div class="eng-history-empty" id="engHistoryEmpty">{{t "calculator.history_empty"}}</div>
+                    </div>
+
+                    <div class="calculator-description">
+                        <h2>{{t "calculator.features"}}</h2>
+                        <ul class="calc-features-list">
+                            <li>{{t "calc_desc.operations"}}</li>
+                            <li>{{t "calc_desc.digits"}}</li>
+                            <li>{{t "calc_desc.clear"}}</li>
+                            <li>{{t "calc_desc.percent"}}</li>
+                            <li>{{t "calc_desc.equals"}}</li>
+                            <li>{{t "calc_desc.display"}}</li>
+                            <li>{{t "calc_desc.thousands"}}</li>
+                            <li>{{t "calc_desc.keyboard"}}</li>
+                        </ul>
+                        <hr class="calc-features-divider">
+                        <h2 class="calc-features-subtitle">{{t "calculator.history"}}</h2>
+                        <ul class="calc-features-list">
+                            <li>{{t "calc_desc.history"}}</li>
+                        </ul>
+                        <hr class="calc-features-divider">
+                        <h2 class="calc-features-subtitle">{{t "eng.features"}}</h2>
+                        <ul class="calc-features-list">
+                            <li>{{t "eng_desc.trig"}}</li>
+                            <li>{{t "eng_desc.hyper"}}</li>
+                            <li>{{t "eng_desc.log"}}</li>
+                            <li>{{t "eng_desc.powers"}}</li>
+                            <li>{{t "eng_desc.memory"}}</li>
+                            <li>{{t "eng_desc.constants"}}</li>
+                            <li>{{t "eng_desc.mode"}}</li>
+                            <li>{{t "eng_desc.parentheses"}}</li>
+                            <li>{{t "eng_desc.other"}}</li>
+                        </ul>
+                    </div>
                 </div>
             </main>
         </div>
@@ -66,7 +211,7 @@
 
     <script>
         (function() {
-                        var mobileNavToggle = document.getElementById('mobileNavToggle');
+            var mobileNavToggle = document.getElementById('mobileNavToggle');
             var mobileNav = document.getElementById('headerNavMobile');
             if (mobileNavToggle && mobileNav) {
                 mobileNavToggle.addEventListener('click', function(e) {
@@ -96,5 +241,6 @@
             }
         })();
     </script>
+    <script src="/static/js/engineering.js"></script>
 </body>
 </html>
