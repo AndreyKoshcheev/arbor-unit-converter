@@ -15,7 +15,12 @@
     <div class="app">
         <header class="header">
             <div class="header-inner">
+                <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Menu">☰</button>
                 <a href="/" class="logo">ARBOR-CONVERTER.RU</a>
+                <nav class="header-nav">
+                    <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
+                    <a href="/engineering" class="header-nav-link">{{t "nav.engineering"}}</a>
+                </nav>
                 <div class="header-spacer"></div>
                 <div class="lang-dropdown">
                     <button class="lang-dropdown-toggle" id="langToggle">
@@ -37,7 +42,11 @@
                         </a>
                     </div>
                 </div>
+            <div class="header-nav-mobile" id="headerNavMobile">
+                <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
+                <a href="/engineering" class="header-nav-link">{{t "nav.engineering"}}</a>
             </div>
+          </div>
         </header>
 
         <div class="main home-main">
@@ -73,6 +82,20 @@
 
     <script>
         (function() {
+                        var mobileNavToggle = document.getElementById('mobileNavToggle');
+            var mobileNav = document.getElementById('headerNavMobile');
+            if (mobileNavToggle && mobileNav) {
+                mobileNavToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileNav.classList.toggle('open');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!mobileNav.contains(e.target) && e.target !== mobileNavToggle) {
+                        mobileNav.classList.remove('open');
+                    }
+                });
+            }
+
             var langToggle = document.getElementById('langToggle');
             var langMenu = document.getElementById('langMenu');
             if (langToggle && langMenu) {

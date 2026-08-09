@@ -1130,5 +1130,20 @@
   "basic_units_list.brightness": "Lamberts, Stilbs, Candelas",
   "extended_units_list.brightness": "Apostilbs, Blondels, Cd/cm², Cd/ft², Cd/in², Cd/m², Foot-lamberts, Kcd/cm², Kcd/ft², Kcd/in², Kcd/m², Millilamberts, Nits, Bril, Skot",
   "basic_units.header": "Basic units:",
-  "extended_units.header": "Extended units (enable extended mode):"
+  "extended_units.header": "Extended units (enable extended mode):",
+  "nav.calculator": "Calculator",
+  "nav.engineering": "Engineering Calculator",
+  "calculator.history": "History",
+  "calculator.clear": "Clear",
+  "calculator.history_empty": "History is empty",
+  "calculator.features": "Calculator features",
+  "calc_desc.operations": "Basic operations: +, −, ×, ÷",
+  "calc_desc.digits": "Digits 0-9, decimal point",
+  "calc_desc.clear": "C — clear, ⌫ — backspace",
+  "calc_desc.percent": "% — percent, ± — sign toggle",
+  "calc_desc.equals": "= — calculate result",
+  "calc_desc.display": "Expression and result display",
+  "calc_desc.thousands": "Thousands separators (spaces)",
+  "calc_desc.keyboard": "Keyboard support (digits, +, -, *, /, Enter, Escape, Backspace)",
+  "calc_desc.history": "Calculation history — click an entry to reuse the result"
 }

@@ -1,26 +1,24 @@
-{{define "layout.html"}}<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{.Lang}}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{.Title}}</title>
-    <meta name="description" content="">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/styles.css?v=3">
 </head>
 <body>
     <div class="app">
         <header class="header">
             <div class="header-inner">
-                <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
                 <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Menu">☰</button>
                 <a href="/" class="logo">ARBOR-CONVERTER.RU</a>
                 <nav class="header-nav">
                     <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
-                    <a href="/engineering" class="header-nav-link">{{t "nav.engineering"}}</a>
+                    <a href="/engineering" class="header-nav-link active">{{t "nav.engineering"}}</a>
                 </nav>
                 <div class="header-spacer"></div>
                 <div class="lang-dropdown">
@@ -43,7 +41,6 @@
                         </a>
                     </div>
                 </div>
-            </div>
             <div class="header-nav-mobile" id="headerNavMobile">
                 <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
                 <a href="/engineering" class="header-nav-link">{{t "nav.engineering"}}</a>
@@ -51,57 +48,25 @@
           </div>
         </header>
 
-        <div class="main">
-            <aside class="sidebar" id="sidebar">
-                <div class="sidebar-header">{{t "sidebar.title"}}</div>
-                <nav class="sidebar-nav">
-                    {{range .Categories}}
-                    <a href="/{{.Code}}" class="sidebar-link {{if eq $.Slug .Code}}active{{end}}">
-                        <span class="sidebar-icon">{{.Icon}}</span>
-                        <span class="sidebar-text">{{to (printf "nav.%s" .Code)}}</span>
-                    </a>
-                    {{end}}
-                </nav>
-            </aside>
-
-            <main class="content">
-                {{template "converter.html" .}}
+        <div class="main home-main">
+            <main class="home-content">
+                <div class="home-header">
+                    <h1 class="home-title">{{t "nav.engineering"}}</h1>
+                    <p class="home-subtitle">Coming soon</p>
+                </div>
             </main>
         </div>
 
         <footer class="footer">
             <div class="footer-inner">
                 <p class="footer-text">© 2026 — Arbor-converter.ru — конвертеры единиц измерений</p>
-                <div class="footer-links">
-                    <a href="/privacy" class="footer-link">{{t "footer.privacy"}}</a>
-                </div>
             </div>
         </footer>
-
-        <div class="overlay" id="overlay"></div>
     </div>
 
-    <script src="/static/js/converter.js?v=3"></script>
     <script>
         (function() {
-            // Menu toggle
-            var toggle = document.getElementById('menuToggle');
-            var sidebar = document.getElementById('sidebar');
-            var overlay = document.getElementById('overlay');
-            if (toggle && sidebar && overlay) {
-                function openMenu() { sidebar.classList.add('open'); overlay.classList.add('visible'); document.body.style.overflow = 'hidden'; }
-                function closeMenu() { sidebar.classList.remove('open'); overlay.classList.remove('visible'); document.body.style.overflow = ''; }
-                toggle.addEventListener('click', function() {
-                    if (sidebar.classList.contains('open')) closeMenu(); else openMenu();
-                });
-                overlay.addEventListener('click', closeMenu);
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape' && sidebar.classList.contains('open')) closeMenu();
-                });
-            }
-
-            // Language dropdown
-            var mobileNavToggle = document.getElementById('mobileNavToggle');
+                        var mobileNavToggle = document.getElementById('mobileNavToggle');
             var mobileNav = document.getElementById('headerNavMobile');
             if (mobileNavToggle && mobileNav) {
                 mobileNavToggle.addEventListener('click', function(e) {
@@ -131,45 +96,5 @@
             }
         })();
     </script>
-
-    <!-- Cookie consent banner -->
-    <div class="cookie-banner" id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;z-index:1000;background:#f0fdf4;border-top:1px solid #dcfce7;padding:18px 20px 16px">
-      <div class="cookie-banner-inner">
-        <div class="cookie-banner-text">
-          <p>{{t "cookie.text"}}</p>
-          <a href="/privacy">{{t "cookie.privacy"}}</a>
-        </div>
-        <div class="cookie-banner-actions">
-          <button class="cookie-btn cookie-btn-secondary" id="cookieReject">{{t "cookie.reject"}}</button>
-          <button class="cookie-btn cookie-btn-primary" id="cookieAccept">{{t "cookie.accept"}}</button>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      (function() {
-        var banner = document.getElementById('cookieBanner');
-        var acceptBtn = document.getElementById('cookieAccept');
-        var rejectBtn = document.getElementById('cookieReject');
-        if (!banner || !acceptBtn || !rejectBtn) return;
-
-        var consent = localStorage.getItem('cookie_consent');
-        if (consent === 'accepted' || consent === 'rejected') {
-          banner.style.display = 'none';
-        }
-
-        acceptBtn.addEventListener('click', function() {
-          localStorage.setItem('cookie_consent', 'accepted');
-          banner.style.display = 'none';
-        });
-
-        rejectBtn.addEventListener('click', function() {
-          localStorage.setItem('cookie_consent', 'rejected');
-          banner.style.display = 'none';
-        });
-      })();
-    </script>
-
 </body>
 </html>
-{{end}}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="{{.Lang}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=3">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="header-inner">
+                <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Menu">☰</button>
+                <a href="/" class="logo">ARBOR-CONVERTER.RU</a>
+                <nav class="header-nav">
+                    <a href="/calculator" class="header-nav-link active">{{t "nav.calculator"}}</a>
+                    <a href="/engineering" class="header-nav-link">{{t "nav.engineering"}}</a>
+                </nav>
+                <div class="header-spacer"></div>
+                <div class="lang-dropdown">
+                    <button class="lang-dropdown-toggle" id="langToggle">
+                        {{if eq .Lang "ru"}}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon"><rect width="3" height="0.667" fill="#fff"/><rect y="0.667" width="3" height="0.666" fill="#0039A6"/><rect y="1.333" width="3" height="0.667" fill="#D52B1E"/></svg>
+                        {{else}}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="flag-icon"><rect width="60" height="30" fill="#012169"/><path fill="#FFF" d="M0 0l60 30M60 0L0 30" stroke="#FFF" stroke-width="6"/><path fill="#C8102E" d="M0 0l60 30M60 0L0 30" stroke="#C8102E" stroke-width="2"/><path fill="#FFF" d="M30 0v30M0 15h60"/><path fill="#C8102E" d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="2"/></g></svg>
+                        {{end}}
+                        <span class="lang-arrow">▼</span>
+                    </button>
+                    <div class="lang-dropdown-menu" id="langMenu">
+                        <a href="/lang/ru" class="lang-dropdown-item {{if eq .Lang "ru"}}active{{end}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="flag-icon"><rect width="3" height="0.667" fill="#fff"/><rect y="0.667" width="3" height="0.666" fill="#0039A6"/><rect y="1.333" width="3" height="0.667" fill="#D52B1E"/></svg>
+                            <span>RU</span>
+                        </a>
+                        <a href="/lang/en" class="lang-dropdown-item {{if eq .Lang "en"}}active{{end}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" class="flag-icon"><rect width="60" height="30" fill="#012169"/><path fill="#FFF" d="M0 0l60 30M60 0L0 30" stroke="#FFF" stroke-width="6"/><path fill="#C8102E" d="M0 0l60 30M60 0L0 30" stroke="#C8102E" stroke-width="2"/><path fill="#FFF" d="M30 0v30M0 15h60"/><path fill="#C8102E" d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="2"/></g></svg>
+                            <span>EN</span>
+                        </a>
+                    </div>
+                </div>
+            <div class="header-nav-mobile" id="headerNavMobile">
+                <a href="/calculator" class="header-nav-link">{{t "nav.calculator"}}</a>
+                <a href="/engineering" class="header-nav-link">{{t "nav.engineering"}}</a>
+            </div>
+          </div>
+        </header>
+
+        <div class="main home-main">
+            <main class="home-content">
+                <div class="calculator-layout">
+                    <div class="calculator-history" id="calcHistory">
+                        <div class="calc-history-header">
+                            <span>{{t "calculator.history"}}</span>
+                            <button class="calc-history-clear" id="calcHistoryClear">{{t "calculator.clear"}}</button>
+                        </div>
+                        <div class="calc-history-list" id="calcHistoryList"></div>
+                        <div class="calc-history-empty" id="calcHistoryEmpty">{{t "calculator.history_empty"}}</div>
+                    </div>
+                    <div class="calculator-page">
+                        <div class="calculator-card">
+                            <div class="calculator-display" id="calcDisplay">
+                                <button class="calc-copy-btn" id="calcCopyBtn" title="{{t "btn.copy"}}">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                </button>
+                                <div class="calc-expression" id="calcExpression"></div>
+                                <div class="calc-result" id="calcResult">0</div>
+                            </div>
+                            <div class="calculator-buttons">
+                                <button class="calc-btn calc-btn-clear" data-action="clear">C</button>
+                                <button class="calc-btn calc-btn-func" data-action="backspace">⌫</button>
+                                <button class="calc-btn calc-btn-func" data-action="percent">%</button>
+                                <button class="calc-btn calc-btn-op" data-action="divide">÷</button>
+
+                                <button class="calc-btn calc-btn-num" data-action="7">7</button>
+                                <button class="calc-btn calc-btn-num" data-action="8">8</button>
+                                <button class="calc-btn calc-btn-num" data-action="9">9</button>
+                                <button class="calc-btn calc-btn-op" data-action="multiply">×</button>
+
+                                <button class="calc-btn calc-btn-num" data-action="4">4</button>
+                                <button class="calc-btn calc-btn-num" data-action="5">5</button>
+                                <button class="calc-btn calc-btn-num" data-action="6">6</button>
+                                <button class="calc-btn calc-btn-op" data-action="subtract">−</button>
+
+                                <button class="calc-btn calc-btn-num" data-action="1">1</button>
+                                <button class="calc-btn calc-btn-num" data-action="2">2</button>
+                                <button class="calc-btn calc-btn-num" data-action="3">3</button>
+                                <button class="calc-btn calc-btn-op" data-action="add">+</button>
+
+                                <button class="calc-btn calc-btn-func" data-action="sign">±</button>
+                                <button class="calc-btn calc-btn-num" data-action="0">0</button>
+                                <button class="calc-btn calc-btn-num" data-action="decimal">.</button>
+                                <button class="calc-btn calc-btn-equals" data-action="equals">=</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calculator-description">
+                    <h2>{{t "calculator.features"}}</h2>
+                    <ul class="calc-features-list">
+                        <li>{{t "calc_desc.operations"}}</li>
+                        <li>{{t "calc_desc.digits"}}</li>
+                        <li>{{t "calc_desc.clear"}}</li>
+                        <li>{{t "calc_desc.percent"}}</li>
+                        <li>{{t "calc_desc.equals"}}</li>
+                        <li>{{t "calc_desc.display"}}</li>
+                        <li>{{t "calc_desc.thousands"}}</li>
+                        <li>{{t "calc_desc.keyboard"}}</li>
+                    </ul>
+                    <hr class="calc-features-divider">
+                    <h2 class="calc-features-subtitle">{{t "calculator.history"}}</h2>
+                    <ul class="calc-features-list">
+                        <li>{{t "calc_desc.history"}}</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-inner">
+                <p class="footer-text">© 2026 — Arbor-converter.ru — конвертеры единиц измерений</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+                        var mobileNavToggle = document.getElementById('mobileNavToggle');
+            var mobileNav = document.getElementById('headerNavMobile');
+            if (mobileNavToggle && mobileNav) {
+                mobileNavToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileNav.classList.toggle('open');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!mobileNav.contains(e.target) && e.target !== mobileNavToggle) {
+                        mobileNav.classList.remove('open');
+                    }
+                });
+            }
+
+            var langToggle = document.getElementById('langToggle');
+            var langMenu = document.getElementById('langMenu');
+            if (langToggle && langMenu) {
+                langToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    langMenu.classList.toggle('visible');
+                });
+                document.addEventListener('click', function() {
+                    langMenu.classList.remove('visible');
+                });
+                langMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        })();
+    </script>
+    <script>
+        // Match history height to calculator height
+        (function() {
+            function matchHeights() {
+                var calc = document.querySelector('.calculator-card');
+                var history = document.querySelector('.calculator-history');
+                if (calc && history) {
+                    var h = calc.offsetHeight;
+                    history.style.maxHeight = h + 'px';
+                }
+            }
+            matchHeights();
+            window.addEventListener('resize', matchHeights);
+            // Re-match after calculator updates
+            var observer = new MutationObserver(matchHeights);
+            var calc = document.querySelector('.calculator-card');
+            if (calc) observer.observe(calc, { childList: true, subtree: true, attributes: true });
+        })();
+    </script>
+    <script src="/static/js/calculator.js"></script>
+</body>
+</html>

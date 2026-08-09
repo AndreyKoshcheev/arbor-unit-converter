@@ -78,6 +78,8 @@ func main() {
 	mux.HandleFunc("/api/categories", apiCategoriesHandler)
 	mux.HandleFunc("/lang/", langSwitchHandler)
 	mux.HandleFunc("/privacy", privacyHandler)
+	mux.HandleFunc("/calculator", calculatorHandler)
+	mux.HandleFunc("/engineering", engineeringHandler)
 	mux.HandleFunc("/", pageHandler)
 
 	fmt.Println("Сервер запущен: http://localhost:8080")
@@ -172,6 +174,40 @@ func privacyHandler(w http.ResponseWriter, r *http.Request) {
 	err := tmpl.Execute(w, map[string]interface{}{
 		"Lang": lang,
 		"Title": t(lang, "footer.privacy") + " — " + t(lang, "site.title"),
+	})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func calculatorHandler(w http.ResponseWriter, r *http.Request) {
+	lang := getLang(r)
+	funcMap := template.FuncMap{
+		"t": func(key string, args ...interface{}) string { return t(lang, key, args...) },
+		"to": func(key string) string { return tOrKey(lang, key) },
+	}
+	tmpl := template.Must(template.New("calculator.html").Funcs(funcMap).ParseFiles("templates/calculator.html"))
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	err := tmpl.Execute(w, map[string]interface{}{
+		"Lang": lang,
+		"Title": t(lang, "nav.calculator") + " — " + t(lang, "site.title"),
+	})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func engineeringHandler(w http.ResponseWriter, r *http.Request) {
+	lang := getLang(r)
+	funcMap := template.FuncMap{
+		"t": func(key string, args ...interface{}) string { return t(lang, key, args...) },
+		"to": func(key string) string { return tOrKey(lang, key) },
+	}
+	tmpl := template.Must(template.New("engineering.html").Funcs(funcMap).ParseFiles("templates/engineering.html"))
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	err := tmpl.Execute(w, map[string]interface{}{
+		"Lang": lang,
+		"Title": t(lang, "nav.engineering") + " — " + t(lang, "site.title"),
 	})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
