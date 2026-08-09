@@ -83,5 +83,31 @@
         <p>{{$desc}}</p>
     </div>
     {{end}}
+
+    <div class="units-lists">
+        <div class="units-list-section">
+            <p class="units-list-label">{{t "basic_units.header"}}</p>
+            <ul class="units-list-items">
+                {{range .CurrentCat.Units}}
+                {{if not .Extended}}
+                <li>{{to (printf "unit.%s" .Code)}}</li>
+                {{end}}
+                {{end}}
+            </ul>
+        </div>
+
+        {{if .CurrentCat.HasExtended}}
+        <div class="units-list-section">
+            <p class="units-list-label">{{t "extended_units.header"}}</p>
+            <ul class="units-list-items units-list-items-extended">
+                {{range .CurrentCat.Units}}
+                {{if .Extended}}
+                <li>{{to (printf "unit.%s" .Code)}}</li>
+                {{end}}
+                {{end}}
+            </ul>
+        </div>
+        {{end}}
+    </div>
 </div>
 {{end}}
