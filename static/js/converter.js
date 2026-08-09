@@ -5,15 +5,15 @@
   var fromSel = document.getElementById('fromUnit');
   var toSel = document.getElementById('toUnit');
   var swapBtn = document.getElementById('swapBtn');
+  var convertBtn = document.getElementById('convertBtn');
   var resultValue = document.getElementById('resultValue');
   var resultUnit = document.getElementById('resultUnit');
+  var copyBtn = document.getElementById('copyBtn');
 
-  if (!input || !fromSel || !toSel || !resultValue || !resultUnit) return;
+  if (!input || !fromSel || !toSel || !resultValue || !resultUnit || !convertBtn || !copyBtn) return;
 
-  // Determine category from URL: /length → length
   var category = window.location.pathname.replace(/^\//, '').split('/')[0] || '';
 
-  // Number formatter: up to 10 fraction digits, no trailing zeros
   var fmt = new Intl.NumberFormat(undefined, {
     maximumFractionDigits: 10,
     minimumFractionDigits: 0,
@@ -28,21 +28,20 @@
     return opt ? opt.textContent : '';
   }
 
-  function updateResult() {
-    resultUnit.textContent = getResultUnitText();
+  function clearResult() {
+    resultValue.textContent = '';
+    resultUnit.textContent = '';
   }
 
   async function convert() {
     var raw = input.value.trim();
     if (raw === '') {
-      resultValue.textContent = '\u2014';
-      updateResult();
+      clearResult();
       return;
     }
     var value = parseFloat(raw);
     if (isNaN(value)) {
-      resultValue.textContent = '\u2014';
-      updateResult();
+      clearResult();
       return;
     }
 
@@ -56,22 +55,28 @@
       var res = await fetch('/api/convert?' + params.toString());
       var data = await res.json();
       if (data.error) {
-        resultValue.textContent = '\u2014';
-        updateResult();
+        clearResult();
         return;
       }
       resultValue.textContent = fmt.format(data.result);
-      updateResult();
+      resultUnit.textContent = getResultUnitText();
     } catch (e) {
-      resultValue.textContent = '\u2014';
-      updateResult();
+      clearResult();
     }
   }
 
-  input.addEventListener('input', convert);
-  fromSel.addEventListener('change', convert);
-  toSel.addEventListener('change', convert);
+  // Convert only on button click
+  convertBtn.addEventListener('click', convert);
 
+  // Convert on Enter key
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      convert();
+    }
+  });
+
+  // Swap units
   if (swapBtn) {
     swapBtn.addEventListener('click', function () {
       var tmp = fromSel.value;
@@ -81,6 +86,44 @@
     });
   }
 
-  // Run initial conversion (e.g. when page loads with a pre-filled value)
-  convert();
+  // Copy result — only on button click
+  copyBtn.addEventListener('click', function () {
+    var text = resultValue.textContent;
+    if (!text) return;
+
+    // Try modern clipboard API first
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(flashCopied).catch(function () {
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  });
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    ta.style.top = '-9999px';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      flashCopied();
+    } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  var copyTimeout;
+
+  function flashCopied() {
+    if (copyTimeout) clearTimeout(copyTimeout);
+    copyBtn.classList.add('copied');
+    copyTimeout = setTimeout(function () {
+      copyBtn.classList.remove('copied');
+    }, 800);
+  }
 })();

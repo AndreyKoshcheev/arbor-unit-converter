@@ -305,32 +305,6 @@ a { color: inherit; }
 
 .result-label { margin-top: 4px; }
 
-.result-box {
-  background: var(--accent-soft);
-  border: 1px solid #bbf7d0;
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  flex-wrap: wrap;
-  min-height: 74px;
-}
-
-.result-value {
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: -.02em;
-  color: var(--text);
-  word-break: break-word;
-}
-
-.result-unit {
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--accent-hover);
-}
-
 /* ===== Home page ===== */
 .home-main { display: block; }
 
@@ -491,4 +465,195 @@ a { color: inherit; }
   .converter-card { padding: 20px; }
   .result-value { font-size: 26px; }
   .home-title { font-size: 26px; }
+}
+
+
+/* ===== Result box ===== */
+.result-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent-soft);
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 16px 20px;
+  min-height: 68px;
+}
+
+.result-value {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.result-unit {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--accent-hover);
+}
+
+/* ===== Convert button ===== */
+.convert-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  background: #059669;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+
+.convert-btn:hover {
+  background: #047857;
+}
+
+.convert-btn:active {
+  transform: scale(.97);
+}
+
+.convert-btn svg {
+  flex-shrink: 0;
+}
+
+/* ===== Copy button ===== */
+.copy-btn {
+  flex-shrink: 0;
+  margin-left: auto;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(22, 163, 74, .2);
+  background: transparent;
+  color: rgba(22, 163, 74, .55);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, border-color .15s, color .15s;
+}
+
+.copy-btn:hover {
+  background: rgba(22, 163, 74, .08);
+  border-color: rgba(22, 163, 74, .4);
+  color: #16a34a;
+}
+
+.copy-btn:active {
+  transform: scale(.92);
+}
+
+.copy-btn.copied {
+  background: rgba(22, 163, 74, .12);
+  border-color: #16a34a;
+  color: #15803d;
+}
+
+/* ===== Empty result state ===== */
+  display: flex;
+}
+
+/* ===== Cookie consent banner ===== */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(15, 23, 42, .1);
+  padding: 16px 20px;
+}
+
+.cookie-banner-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cookie-banner-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.cookie-banner-text p {
+  margin: 0 0 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.cookie-banner-text a {
+  font-size: 13px;
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.cookie-banner-text a:hover {
+  color: var(--accent);
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.cookie-btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.cookie-btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.cookie-btn-secondary {
+  color: var(--text-secondary);
+}
+
+.cookie-btn-secondary:hover {
+  background: var(--bg);
+  border-color: var(--text-secondary);
+  color: var(--text);
+}
+
+@media (max-width: 600px) {
+  .cookie-banner-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .cookie-banner-actions {
+    justify-content: center;
+  }
 }

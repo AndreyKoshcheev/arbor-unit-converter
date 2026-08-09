@@ -8,3 +8,7 @@ Thumbs.db
 
 # Env
 .env
+
+# AI
+.codex
+.agents

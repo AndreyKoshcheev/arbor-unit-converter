@@ -89,5 +89,43 @@
             }
         })();
     </script>
+    <!-- Cookie consent banner -->
+    <div class="cookie-banner" id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;z-index:1000;background:#f0fdf4;border-top:1px solid #dcfce7;padding:18px 20px 16px">
+      <div class="cookie-banner-inner">
+        <div class="cookie-banner-text">
+          <p>{{t "cookie.text"}}</p>
+          <a href="/privacy">{{t "cookie.privacy"}}</a>
+        </div>
+        <div class="cookie-banner-actions">
+          <button class="cookie-btn cookie-btn-secondary" id="cookieReject">{{t "cookie.reject"}}</button>
+          <button class="cookie-btn cookie-btn-primary" id="cookieAccept">{{t "cookie.accept"}}</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        var banner = document.getElementById('cookieBanner');
+        var acceptBtn = document.getElementById('cookieAccept');
+        var rejectBtn = document.getElementById('cookieReject');
+        if (!banner || !acceptBtn || !rejectBtn) return;
+
+        var consent = localStorage.getItem('cookie_consent');
+        if (consent === 'accepted' || consent === 'rejected') {
+          banner.style.display = 'none';
+        }
+
+        acceptBtn.addEventListener('click', function() {
+          localStorage.setItem('cookie_consent', 'accepted');
+          banner.style.display = 'none';
+        });
+
+        rejectBtn.addEventListener('click', function() {
+          localStorage.setItem('cookie_consent', 'rejected');
+          banner.style.display = 'none';
+        });
+      })();
+    </script>
+
 </body>
 </html>
