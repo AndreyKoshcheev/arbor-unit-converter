@@ -582,27 +582,25 @@ func GetCategories() []Category {
 		{"skot", "Скоты", "Скотов", 1e-07, true},
 	}
 
-		return []Category{
-		{"mass", "Масса", "⚖️", massUnits, "kilogram", false, false, "Тонны, килограммы, фунты, унции и другие единицы массы", true},
-		{"length", "Длина", "📏", lengthUnits, "meter", false, false, "Километры, метры, футы, ярды, дюймы, мили", true},
-		{"temperature", "Температура", "🌡️", temperatureUnits, "celsius", true, false, "Цельсий, Фаренгейт, Кельвин, Ранкин", true},
-		{"pressure", "Давление", "💨", pressureUnits, "pascal", false, false, "Паскали, бары, атмосферы, торры", true},
-		{"volume", "Объём", "📐", volumeUnits, "liter", false, false, "Литры, галлоны, куб. метры", true},
-		{"area", "Площадь", "🔲", areaUnits, "sq_foot", false, false, "Кв. футы, акры, сотки, кв. мили", true},
-		{"density", "Плотность", "🧱", densityUnits, "gram_per_liter", false, false, "Грамм/литр, кг/см³, фунт/дюйм³", true},
+				return []Category{
 		{"time", "Время", "⏱️", timeUnits, "second", false, false, "Дни, минуты, секунды, миллисекунды", true},
-		{"speed", "Скорость", "🚀", speedUnits, "kmh", false, false, "Км/ч, м/с, мили/ч, узлы", true},
-		{"acceleration", "Ускорение", "📈", accelerationUnits, "m_per_s2", false, false, "М/с², км/с²", true},
-		{"force", "Сила", "💪", forceUnits, "newton", false, false, "Ньютоны, дины, кгс, грамм-сила, фунт-сила", true},
-		{"angle", "Угол", "📐", angleUnits, "degree", false, true, "Градусы, радианы, окружности", true},
-		{"power", "Мощность", "⚡", powerUnits, "watt", false, false, "Ватты, киловатты, лошадиные силы", true},
-		{"energy", "Энергия", "🔥", energyUnits, "joule", false, false, "Джоули, калории, эрги, БТЕ, ватт·часы", true},
-		{"frequency", "Частота", "📊", frequencyUnits, "hertz", false, false, "Герцы, мегагерцы, об/мин", true},
+		{"pressure", "Давление", "💨", pressureUnits, "pascal", false, false, "Паскали, бары, атмосферы, торры", true},
+		{"length", "Длина", "📏", lengthUnits, "meter", false, false, "Километры, метры, футы, ярды, дюймы, мили", true},
 		{"computing", "Комп. единицы", "💾", computingUnits, "bit", false, false, "Биты, байты, кило-, мега-, гига-, терабайты", true},
+		{"mass", "Масса", "⚖️", massUnits, "kilogram", false, false, "Тонны, килограммы, фунты, унции и другие единицы массы", true},
+		{"power", "Мощность", "⚡", powerUnits, "watt", false, false, "Ватты, киловатты, лошадиные силы", true},
+		{"volume", "Объём", "📐", volumeUnits, "liter", false, false, "Литры, галлоны, куб. метры", true},
+		{"illuminance", "Освещённость", "💡", illuminanceUnits, "lux", false, false, "Люксы, фоты, люмен/м²", true},
+		{"density", "Плотность", "🧱", densityUnits, "gram_per_liter", false, false, "Грамм/литр, кг/см³, фунт/дюйм³", true},
+		{"area", "Площадь", "🔲", areaUnits, "sq_foot", false, false, "Кв. футы, акры, сотки, кв. мили", true},
+		{"force", "Сила", "💪", forceUnits, "newton", false, false, "Ньютоны, дины, кгс, грамм-сила, фунт-сила", true},
+		{"speed", "Скорость", "🚀", speedUnits, "kmh", false, false, "Км/ч, м/с, мили/ч, узлы", true},
+		{"temperature", "Температура", "🌡️", temperatureUnits, "celsius", true, false, "Цельсий, Фаренгейт, Кельвин, Ранкин", true},
+		{"angle", "Угол", "📐", angleUnits, "degree", false, true, "Градусы, радианы, окружности", true},
+		{"acceleration", "Ускорение", "📈", accelerationUnits, "m_per_s2", false, false, "М/с², км/с²", true},
+		{"frequency", "Частота", "📊", frequencyUnits, "hertz", false, false, "Герцы, мегагерцы, об/мин", true},
 		{"current", "Эл. ток", "⚡", currentUnits, "ampere", false, false, "Амперы, миллиамперы, гильберты, гауссы", true},
 		{"electromagnetism", "Электромагнетизм", "🧲", electromagnetismUnits, "farad", false, false, "Фарады, микро-, пико-, статфарады", true},
-		{"illuminance", "Освещённость", "💡", illuminanceUnits, "lux", false, false, "Люксы, фоты, люмен/м²", true},
+		{"energy", "Энергия", "🔥", energyUnits, "joule", false, false, "Джоули, калории, эрги, БТЕ, ватт·часы", true},
 		{"brightness", "Яркость", "✨", brightnessUnits, "candela", false, false, "Ламберты, канделы, стильбы", true},
-	}
-
-}
+	}}
