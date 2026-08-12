@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://arbor-converter.ru/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://arbor-converter.ru/length</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://arbor-converter.ru/weight</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://arbor-converter.ru/temperature</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://arbor-converter.ru/volume</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://arbor-converter.ru/speed</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://arbor-converter.ru/data</loc>
+    <priority>0.9</priority>
+  </url>
+</urlset>
