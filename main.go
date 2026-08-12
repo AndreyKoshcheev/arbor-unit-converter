@@ -250,6 +250,7 @@ func compoundHandler(w http.ResponseWriter, r *http.Request) {
 
 // Template data
 type pageData struct {
+	Description   string
 	Lang          string
 	Title         string
 	Slug          string
@@ -278,6 +279,7 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 			Lang:       lang,
 			Title:      t(lang, "home.title"),
 			IsHome:     true,
+			Description: t(lang, "home.subtitle"),
 			Categories: cats,
 			T:          func(key string, args ...interface{}) string { return t(lang, key, args...) },
 			TO:         func(key string) string { return tOrKey(lang, key) },
@@ -332,6 +334,7 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 		Categories:    cats,
 		CurrentCat:    currentCat,
 		DefaultToName: defaultToName,
+		Description: t(lang, "desc."+currentCat.Code),
 		T:            func(key string, args ...interface{}) string { return t(lang, key, args...) },
 		TO:           func(key string) string { return tOrKey(lang, key) },
 		TGen: func(key string) string {
